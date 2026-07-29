@@ -56,12 +56,59 @@
 
   body{
     margin: 0;
+    position: relative;
     background: var(--creme);
     color: var(--tinta);
     font-family: var(--sans);
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+  }
+
+  /* ==========================================================
+     CEREJAS FLUTUANTES (decoração de fundo, atrás de todo o conteúdo)
+     ========================================================== */
+  .cerejas-flutuantes{
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .cereja,
+  .sticker{
+    position: absolute;
+    width: 64px;
+    height: auto;
+    opacity: 0.9;
+    filter: drop-shadow(0 4px 6px rgba(20,17,13,0.18));
+    animation: flutuar-cereja 7s ease-in-out infinite;
+  }
+  .cereja-1{ top: 4%;  left: 3%;  animation-delay: 0s; }
+  .cereja-2{ top: 42.5%; right: 3%; animation-delay: 3.2s; width: 56px; }
+  .cereja-3{ top: 81%; left: 4%;  animation-delay: 3s;   width: 54px; }
+
+  .sticker-laptop{    top: 9.5%;  right: 4%; width: 68px; animation-delay: 0.4s; }
+  .sticker-skincare{  top: 15%;   left: 4%;  width: 56px; animation-delay: 0.8s; }
+  .sticker-airpods{   top: 20.5%; right: 3%; width: 52px; animation-delay: 1.2s; }
+  .sticker-haircare{  top: 26%;   left: 3%;  width: 70px; animation-delay: 1.6s; }
+  .sticker-boots{     top: 31.5%; right: 5%; width: 62px; animation-delay: 2s;   }
+  .sticker-makeup{    top: 37%;   left: 5%;  width: 56px; animation-delay: 2.4s; }
+  .sticker-bag{       top: 48%;   left: 2%;  width: 64px; animation-delay: 2.8s; }
+  .sticker-moda{      top: 53.5%; right: 4%; width: 60px; animation-delay: 0.2s; }
+  .sticker-dumbbells{ top: 59%;   left: 4%;  width: 66px; animation-delay: 0.6s; }
+  .sticker-blueberry{ top: 64.5%; right: 3%; width: 52px; animation-delay: 1s;   }
+  .sticker-mascara{   top: 70%;   left: 3%;  width: 50px; animation-delay: 1.4s; }
+  .sticker-cupcake{   top: 75.5%; right: 5%; width: 58px; animation-delay: 1.8s; }
+  .sticker-smoothie{  top: 86.5%; right: 3%; width: 50px; animation-delay: 2.2s; }
+  .sticker-fit{       top: 92%;   left: 5%;  width: 54px; animation-delay: 2.6s; }
+  .sticker-tech{      top: 97.5%; right: 4%; width: 48px; animation-delay: 3.4s; }
+
+  @keyframes flutuar-cereja{
+    0%, 100%{ transform: translateY(0) rotate(-4deg); }
+    50%{ transform: translateY(-18px) rotate(4deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .cereja, .sticker{ animation: none; }
   }
 
   img, svg{ max-width: 100%; display: block; }
@@ -138,6 +185,9 @@
     gap: 32px;
     margin-bottom: 68px;
     flex-wrap: wrap;
+    background: var(--creme);
+    border-radius: var(--raio);
+    padding: 30px 34px;
   }
 
   /* Foco visível para navegação por teclado */
@@ -166,10 +216,10 @@
   .botao:hover{ transform: translateY(-2px); }
 
   .botao-primario{
-    background: var(--tinta);
+    background: var(--royal);
     color: var(--creme);
   }
-  .botao-primario:hover{ background: var(--royal); }
+  .botao-primario:hover{ background: var(--royal-escuro); }
 
   .botao-secundario{
     background: transparent;
@@ -177,7 +227,7 @@
     border-color: var(--tinta);
   }
   .botao-secundario:hover{
-    background: var(--tinta);
+    background: var(--royal);
     color: var(--creme);
   }
 
@@ -262,7 +312,7 @@
   .nav-links a:focus-visible::after{ width: 100%; }
 
   .nav-cta{
-    background: var(--tinta);
+    background: var(--royal);
     color: var(--creme) !important;
     padding: 13px 30px;
     margin: -5px -8px;
@@ -270,7 +320,7 @@
     font-size: 0.88rem !important;
   }
   .nav-cta::after{ display: none; }
-  .nav-cta:hover{ background: var(--royal) !important; }
+  .nav-cta:hover{ background: var(--royal-escuro) !important; }
 
   .nav-links > li{ display: flex; align-items: center; }
 
@@ -293,8 +343,8 @@
   }
   .idioma-btn:hover{ border-color: var(--tinta); color: var(--tinta); }
   .idioma-btn.ativo{
-    background: var(--tinta);
-    border-color: var(--tinta);
+    background: var(--royal);
+    border-color: var(--royal);
     color: var(--creme);
   }
 
@@ -331,6 +381,12 @@
     grid-template-columns: 1.1fr 0.9fr;
     gap: 56px;
     align-items: center;
+  }
+
+  .hero-conteudo{
+    background: var(--creme);
+    border-radius: var(--raio);
+    padding: 36px 40px;
   }
 
   .hero-nome{
@@ -432,6 +488,12 @@
     align-items: center;
   }
 
+  .sobre-texto{
+    background: var(--creme);
+    border-radius: var(--raio);
+    padding: 36px 40px;
+  }
+
   .sobre-foto{
     border-radius: var(--raio);
     box-shadow: var(--sombra);
@@ -527,8 +589,8 @@
     color: var(--tinta);
   }
   .filtro-botao.ativo{
-    background: var(--tinta);
-    border-color: var(--tinta);
+    background: var(--royal);
+    border-color: var(--royal);
     color: var(--creme);
   }
 
@@ -695,12 +757,12 @@
     color: var(--tinta-suave);
   }
   .cartao-servico.destaque{
-    background: var(--tinta);
-    border-color: var(--tinta);
+    background: var(--royal);
+    border-color: var(--royal);
   }
   .cartao-servico.destaque h3{ color: var(--creme); }
   .cartao-servico.destaque p{ color: rgba(243,238,233,0.78); }
-  .cartao-servico.destaque .cartao-servico-numero{ color: var(--queimado); }
+  .cartao-servico.destaque .cartao-servico-numero{ color: var(--creme); }
   .cartao-servico.destaque .cartao-servico-tag{
     border-color: rgba(243,238,233,0.35);
     color: var(--creme);
@@ -826,7 +888,7 @@
     line-height: 1.5;
   }
   .faq-pergunta .faq-bolha{
-    background: var(--tinta);
+    background: var(--royal);
     color: var(--creme);
     border-bottom-right-radius: 4px;
   }
@@ -959,9 +1021,10 @@
      8. RODAPÉ
      ========================================================== */
   .rodape{
-    background: var(--tinta);
-    color: rgba(243,238,233,0.72);
+    background: var(--creme);
+    color: var(--tinta-suave);
     padding: 56px 0 30px;
+    border-top: 1px solid var(--linha);
   }
   .rodape-topo{
     display: flex;
@@ -970,13 +1033,13 @@
     flex-wrap: wrap;
     gap: 24px;
     padding-bottom: 32px;
-    border-bottom: 1px solid rgba(243,238,233,0.14);
+    border-bottom: 1px solid var(--linha);
     margin-bottom: 24px;
   }
   .rodape-logo{
     font-family: var(--serif);
     font-size: 1.5rem;
-    color: var(--creme);
+    color: var(--tinta);
   }
   .rodape-logo em{ color: var(--queimado); }
   .rodape-redes{
@@ -986,7 +1049,7 @@
   .rodape-redes a{
     font-size: 0.88rem;
     font-weight: 600;
-    color: rgba(243,238,233,0.85);
+    color: var(--tinta);
   }
   .rodape-redes a:hover{ color: var(--queimado); }
   .rodape-base{
@@ -995,7 +1058,7 @@
     flex-wrap: wrap;
     gap: 12px;
     font-size: 0.8rem;
-    color: rgba(243,238,233,0.5);
+    color: var(--tinta-suave);
   }
 
   /* ==========================================================
@@ -1097,6 +1160,68 @@
 </style>
 </head>
 <body>
+
+<div class="cerejas-flutuantes" aria-hidden="true">
+  <img class="cereja cereja-1" src="imagens/fundo/cereja.png" alt="">
+  <img class="cereja cereja-2" src="imagens/fundo/cereja.png" alt="">
+  <img class="cereja cereja-3" src="imagens/fundo/cereja.png" alt="">
+
+  <img class="sticker sticker-laptop" src="imagens/stickers/sticker-laptop.png" alt="">
+  <img class="sticker sticker-skincare" src="imagens/stickers/sticker-skincare.png" alt="">
+  <img class="sticker sticker-airpods" src="imagens/stickers/sticker-airpods.png" alt="">
+  <img class="sticker sticker-haircare" src="imagens/stickers/sticker-haircare.png" alt="">
+  <img class="sticker sticker-boots" src="imagens/stickers/sticker-boots.png" alt="">
+  <img class="sticker sticker-makeup" src="imagens/stickers/sticker-makeup.png" alt="">
+  <img class="sticker sticker-bag" src="imagens/stickers/sticker-bag.png" alt="">
+  <img class="sticker sticker-moda" src="imagens/stickers/sticker-moda.png" alt="">
+  <img class="sticker sticker-dumbbells" src="imagens/stickers/sticker-dumbbells.png" alt="">
+  <img class="sticker sticker-blueberry" src="imagens/stickers/sticker-blueberry.png" alt="">
+  <img class="sticker sticker-mascara" src="imagens/stickers/sticker-mascara.png" alt="">
+  <img class="sticker sticker-cupcake" src="imagens/stickers/sticker-cupcake.png" alt="">
+  <img class="sticker sticker-smoothie" src="imagens/stickers/sticker-smoothie.png" alt="">
+  <img class="sticker sticker-fit" src="imagens/stickers/sticker-fit.png" alt="">
+  <img class="sticker sticker-tech" src="imagens/stickers/sticker-tech.png" alt="">
+
+  <img class="sticker" src="imagens/stickers/sticker-cleanser.png" alt="" style="top:1.5%; left:2%; width:38px; animation-delay:0s;">
+  <img class="sticker" src="imagens/stickers/sticker-cream.png" alt="" style="top:4%; right:3%; width:42px; animation-delay:0.37s;">
+  <img class="sticker" src="imagens/stickers/sticker-serum.png" alt="" style="top:6.5%; left:4%; width:46px; animation-delay:0.74s;">
+  <img class="sticker" src="imagens/stickers/sticker-mask.png" alt="" style="top:9%; right:5%; width:50px; animation-delay:1.11s;">
+  <img class="sticker" src="imagens/stickers/sticker-hairoil.png" alt="" style="top:11.5%; left:6%; width:54px; animation-delay:1.48s;">
+  <img class="sticker" src="imagens/stickers/sticker-jaderoller.png" alt="" style="top:14%; right:2%; width:38px; animation-delay:1.85s;">
+  <img class="sticker" src="imagens/stickers/sticker-lotion.png" alt="" style="top:16.5%; left:3%; width:42px; animation-delay:2.22s;">
+  <img class="sticker" src="imagens/stickers/sticker-hairclip.png" alt="" style="top:19%; right:4%; width:46px; animation-delay:2.59s;">
+  <img class="sticker" src="imagens/stickers/sticker-shampoo.png" alt="" style="top:21.5%; left:5%; width:50px; animation-delay:2.96s;">
+  <img class="sticker" src="imagens/stickers/sticker-comb.png" alt="" style="top:24%; right:6%; width:54px; animation-delay:3.33s;">
+  <img class="sticker" src="imagens/stickers/sticker-guasha.png" alt="" style="top:26.5%; left:2%; width:38px; animation-delay:0.1s;">
+  <img class="sticker" src="imagens/stickers/sticker-lipstick.png" alt="" style="top:29%; right:3%; width:42px; animation-delay:0.47s;">
+  <img class="sticker" src="imagens/stickers/sticker-blush.png" alt="" style="top:31.5%; left:4%; width:46px; animation-delay:0.84s;">
+  <img class="sticker" src="imagens/stickers/sticker-brush.png" alt="" style="top:34%; right:5%; width:50px; animation-delay:1.21s;">
+  <img class="sticker" src="imagens/stickers/sticker-mascara2.png" alt="" style="top:36.5%; left:6%; width:54px; animation-delay:1.58s;">
+  <img class="sticker" src="imagens/stickers/sticker-hoops.png" alt="" style="top:39%; right:2%; width:38px; animation-delay:1.95s;">
+  <img class="sticker" src="imagens/stickers/sticker-necklace.png" alt="" style="top:41.5%; left:3%; width:42px; animation-delay:2.32s;">
+  <img class="sticker" src="imagens/stickers/sticker-sunglasses.png" alt="" style="top:44%; right:4%; width:46px; animation-delay:2.69s;">
+  <img class="sticker" src="imagens/stickers/sticker-phonecase.png" alt="" style="top:46.5%; left:5%; width:50px; animation-delay:3.06s;">
+  <img class="sticker" src="imagens/stickers/sticker-bow.png" alt="" style="top:49%; right:6%; width:54px; animation-delay:3.43s;">
+  <img class="sticker" src="imagens/stickers/sticker-cherries2.png" alt="" style="top:51.5%; left:2%; width:38px; animation-delay:0.2s;">
+  <img class="sticker" src="imagens/stickers/sticker-blueberries2.png" alt="" style="top:54%; right:3%; width:42px; animation-delay:0.57s;">
+  <img class="sticker" src="imagens/stickers/sticker-acaibowl.png" alt="" style="top:56.5%; left:4%; width:46px; animation-delay:0.94s;">
+  <img class="sticker" src="imagens/stickers/sticker-cupcake2.png" alt="" style="top:59%; right:5%; width:50px; animation-delay:1.31s;">
+  <img class="sticker" src="imagens/stickers/sticker-proteinbar.png" alt="" style="top:61.5%; left:6%; width:54px; animation-delay:1.68s;">
+  <img class="sticker" src="imagens/stickers/sticker-multivitamin.png" alt="" style="top:64%; right:2%; width:38px; animation-delay:2.05s;">
+  <img class="sticker" src="imagens/stickers/sticker-dumbbells2.png" alt="" style="top:66.5%; left:3%; width:42px; animation-delay:2.42s;">
+  <img class="sticker" src="imagens/stickers/sticker-yogamat2.png" alt="" style="top:69%; right:4%; width:46px; animation-delay:2.79s;">
+  <img class="sticker" src="imagens/stickers/sticker-waterbottle.png" alt="" style="top:71.5%; left:5%; width:50px; animation-delay:3.16s;">
+  <img class="sticker" src="imagens/stickers/sticker-phoneapp.png" alt="" style="top:74%; right:6%; width:54px; animation-delay:3.53s;">
+  <img class="sticker" src="imagens/stickers/sticker-tablet.png" alt="" style="top:76.5%; left:2%; width:38px; animation-delay:0.3s;">
+  <img class="sticker" src="imagens/stickers/sticker-headphones2.png" alt="" style="top:79%; right:3%; width:42px; animation-delay:0.67s;">
+  <img class="sticker" src="imagens/stickers/sticker-laptop2.png" alt="" style="top:81.5%; left:4%; width:46px; animation-delay:1.04s;">
+  <img class="sticker" src="imagens/stickers/sticker-ringlight.png" alt="" style="top:84%; right:5%; width:50px; animation-delay:1.41s;">
+  <img class="sticker" src="imagens/stickers/sticker-luggage.png" alt="" style="top:86.5%; left:6%; width:54px; animation-delay:1.78s;">
+  <img class="sticker" src="imagens/stickers/sticker-passport.png" alt="" style="top:89%; right:2%; width:38px; animation-delay:2.15s;">
+  <img class="sticker" src="imagens/stickers/sticker-boardingpass.png" alt="" style="top:91.5%; left:3%; width:42px; animation-delay:2.52s;">
+  <img class="sticker" src="imagens/stickers/sticker-map.png" alt="" style="top:94%; right:4%; width:46px; animation-delay:2.89s;">
+  <img class="sticker" src="imagens/stickers/sticker-travelbag.png" alt="" style="top:96.5%; left:5%; width:50px; animation-delay:3.26s;">
+</div>
 
 <!-- ============================================================
      1. CABEÇALHO / MENU
