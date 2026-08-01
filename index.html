@@ -65,35 +65,6 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ==========================================================
-     CEREJAS FLUTUANTES (decoração de fundo, atrás de todo o conteúdo)
-     ========================================================== */
-  .cerejas-flutuantes{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    pointer-events: none;
-    z-index: -1;
-  }
-  .cereja,
-  .sticker{
-    position: absolute;
-    width: 64px;
-    height: auto;
-    opacity: 0.9;
-    filter: drop-shadow(0 4px 6px rgba(20,17,13,0.18));
-    animation: flutuar-cereja 7s ease-in-out infinite;
-  }
-  @keyframes flutuar-cereja{
-    0%, 100%{ transform: translateY(0) rotate(-4deg); }
-    50%{ transform: translateY(-18px) rotate(4deg); }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .cereja, .sticker{ animation: none; }
-  }
-
   img, svg{ max-width: 100%; display: block; }
 
   a{ color: inherit; text-decoration: none; }
@@ -1165,22 +1136,6 @@
        2. HERO
        ============================================================ -->
   <section class="hero container" id="hero">
-    <div class="cerejas-flutuantes" aria-hidden="true">
-      <img class="cereja" src="imagens/fundo/cereja.png" alt="" style="top:6%; left:4%; width:44px; animation-delay:0s;">
-      <img class="cereja" src="imagens/fundo/cereja.png" alt="" style="top:80%; left:90%; width:40px; animation-delay:1.5s;">
-      <img class="sticker" src="imagens/stickers/sticker_03.png" alt="" style="top:14%; left:22%; width:26px; animation-delay:0.3s;">
-      <img class="sticker" src="imagens/stickers/sticker_09.png" alt="" style="top:8%; left:52%; width:42px; animation-delay:0.6s;">
-      <img class="sticker" src="imagens/stickers/sticker_14.png" alt="" style="top:30%; left:8%; width:48px; animation-delay:0.9s;">
-      <img class="sticker" src="imagens/stickers/sticker_19.png" alt="" style="top:20%; left:80%; width:46px; animation-delay:1.2s;">
-      <img class="sticker" src="imagens/stickers/sticker_25.png" alt="" style="top:46%; left:34%; width:36px; animation-delay:1.8s;">
-      <img class="sticker" src="imagens/stickers/sticker_33.png" alt="" style="top:58%; left:88%; width:50px; animation-delay:2.1s;">
-      <img class="sticker" src="imagens/stickers/sticker_42.png" alt="" style="top:66%; left:14%; width:38px; animation-delay:2.4s;">
-      <img class="sticker" src="imagens/stickers/sticker_48.png" alt="" style="top:38%; left:65%; width:34px; animation-delay:2.7s;">
-      <img class="sticker" src="imagens/stickers/sticker_55.png" alt="" style="top:88%; left:40%; width:50px; animation-delay:3s;">
-      <img class="sticker" src="imagens/stickers/sticker_61.png" alt="" style="top:12%; left:96%; width:36px; animation-delay:3.3s;">
-      <img class="sticker" src="imagens/stickers/sticker_67.png" alt="" style="top:74%; left:60%; width:46px; animation-delay:0.15s;">
-      <img class="sticker" src="imagens/stickers/sticker_73.png" alt="" style="top:92%; left:76%; width:44px; animation-delay:1.05s;">
-    </div>
     <div class="hero-grade">
       <div class="hero-conteudo revelar" id="hero-conteudo">
         <span class="eyebrow" id="hero-eyebrow"></span>
