@@ -1310,6 +1310,9 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/tracking.js"></script>
+
 <script>
 /* ================================================================
    OBJETO DE CONFIGURAÇÃO
@@ -1698,8 +1701,21 @@ function renderHero(){
     { chave: "tiktok", url: DADOS.tiktokUrl, label: "TikTok" },
   ];
   document.getElementById("hero-redes").innerHTML = redes.map(r =>
-    '<a class="hero-rede-link" href="' + r.url + '" target="_blank" rel="noopener noreferrer" aria-label="' + r.label + '">' + ICONES_REDES[r.chave] + '</a>'
+    '<a class="hero-rede-link" href="' + r.url + '" target="_blank" rel="noopener noreferrer" aria-label="' + r.label + '" data-canal="' + r.chave + '">' + ICONES_REDES[r.chave] + '</a>'
   ).join("");
+  document.getElementById("hero-redes").onclick = rastrearCliqueDeCanal;
+}
+
+// Registra clique em links de contato (whatsapp, email, instagram) como
+// "contact_<canal>"; outros canais (ex: tiktok) sao registrados sem o
+// prefixo, ja que nao contam como intencao de contato.
+function rastrearCliqueDeCanal(e){
+  const link = e.target.closest("[data-canal]");
+  if(!link) return;
+  const canal = link.dataset.canal;
+  const canaisDeContato = ["whatsapp", "email", "instagram"];
+  const nomeEvento = canaisDeContato.includes(canal) ? "contact_" + canal : canal;
+  Tracking.evento("button_click", nomeEvento);
 }
 
 function renderFaq(){
@@ -1790,6 +1806,7 @@ function renderPortfolioVideos(){
     const tagHtml = container.querySelector(".cartao-trabalho-tag").outerHTML;
     container.innerHTML = tagHtml +
       '<iframe class="cartao-trabalho-video" src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0" title="' + tituloVideo + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+    Tracking.evento("video_view", id, { title: tituloVideo });
   };
 
   revelarNovos();
@@ -1859,19 +1876,19 @@ function renderContato(){
 
   const whatsappNumero = "55" + DADOS.telefone;
   document.getElementById("contato-diretos").innerHTML =
-    '<a class="contato-info-linha" href="https://wa.me/' + whatsappNumero + '" target="_blank" rel="noopener noreferrer">' +
+    '<a class="contato-info-linha" href="https://wa.me/' + whatsappNumero + '" target="_blank" rel="noopener noreferrer" data-canal="whatsapp">' +
       '<span class="contato-info-rotulo">' + t.contato.whatsappLabel + '</span>' +
       '<span class="contato-info-valor">' + DADOS.telefoneFormatado + '</span>' +
     '</a>' +
-    '<a class="contato-info-linha" href="mailto:' + DADOS.email + '">' +
+    '<a class="contato-info-linha" href="mailto:' + DADOS.email + '" data-canal="email">' +
       '<span class="contato-info-rotulo">' + t.contato.emailLabelLista + '</span>' +
       '<span class="contato-info-valor">' + DADOS.email + '</span>' +
     '</a>' +
-    '<a class="contato-info-linha" href="' + DADOS.instagramUrl + '" target="_blank" rel="noopener noreferrer">' +
+    '<a class="contato-info-linha" href="' + DADOS.instagramUrl + '" target="_blank" rel="noopener noreferrer" data-canal="instagram">' +
       '<span class="contato-info-rotulo">' + t.contato.instagramLabel + '</span>' +
       '<span class="contato-info-valor">' + DADOS.instagramUsuario + '</span>' +
     '</a>' +
-    '<a class="contato-info-linha" href="' + DADOS.tiktokUrl + '" target="_blank" rel="noopener noreferrer">' +
+    '<a class="contato-info-linha" href="' + DADOS.tiktokUrl + '" target="_blank" rel="noopener noreferrer" data-canal="tiktok">' +
       '<span class="contato-info-rotulo">' + t.contato.tiktokLabel + '</span>' +
       '<span class="contato-info-valor">' + DADOS.tiktokUsuario + '</span>' +
     '</a>' +
@@ -1879,16 +1896,18 @@ function renderContato(){
       '<span class="contato-info-rotulo">' + t.contato.baseLabel + '</span>' +
       '<span class="contato-info-valor">' + DADOS.cidade + '</span>' +
     '</div>';
+  document.getElementById("contato-diretos").onclick = rastrearCliqueDeCanal;
 }
 
 function renderRodape(){
   const t = T();
   const whatsappNumero = "55" + DADOS.telefone;
   document.getElementById("rodape-redes").innerHTML =
-    '<a href="' + DADOS.instagramUrl + '" target="_blank" rel="noopener noreferrer">Instagram</a>' +
-    '<a href="' + DADOS.tiktokUrl + '" target="_blank" rel="noopener noreferrer">TikTok</a>' +
-    '<a href="mailto:' + DADOS.email + '">' + t.rodape.emailLabel + '</a>' +
-    '<a href="https://wa.me/' + whatsappNumero + '" target="_blank" rel="noopener noreferrer">WhatsApp</a>';
+    '<a href="' + DADOS.instagramUrl + '" target="_blank" rel="noopener noreferrer" data-canal="instagram">Instagram</a>' +
+    '<a href="' + DADOS.tiktokUrl + '" target="_blank" rel="noopener noreferrer" data-canal="tiktok">TikTok</a>' +
+    '<a href="mailto:' + DADOS.email + '" data-canal="email">' + t.rodape.emailLabel + '</a>' +
+    '<a href="https://wa.me/' + whatsappNumero + '" target="_blank" rel="noopener noreferrer" data-canal="whatsapp">WhatsApp</a>';
+  document.getElementById("rodape-redes").onclick = rastrearCliqueDeCanal;
   document.getElementById("rodape-direitos").textContent =
     DADOS.nomeCompleto + ", " + new Date().getFullYear() + ". " + t.rodape.direitos;
   document.getElementById("rodape-nota").textContent = t.rodape.nota;
@@ -1980,6 +1999,9 @@ function renderTudo(){
     const linkMailto = "mailto:" + DADOS.email + "?subject=" + assunto + "&body=" + corpo;
 
     window.location.href = linkMailto;
+
+    Tracking.evento("button_click", "contact_formulario");
+    Tracking.lead({ name: nome, email: email, message: mensagem, source: "contact" });
 
     confirmacao.textContent = t.msgOk + DADOS.email + ".";
     confirmacao.classList.add("mostrar");

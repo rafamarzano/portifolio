@@ -49,14 +49,25 @@ create policy "Leitura para usuarios autenticados"
   using (true);
 
 -- ================================================================
--- IMPORTANTE: nenhuma politica de INSERT foi criada para o role
--- anon (publico) de proposito. A chave anon usada no site publico
--- e no painel e uma chave publica, entao ela nunca deve ter
--- permissao de escrita direta nessas tabelas.
+-- ESCRITA PUBLICA (apenas inserir, nunca ler)
 --
--- A gravacao de eventos e mensagens (INSERT) deve ser feita pelo
--- lado servidor do site do portfolio, usando a service_role key
--- (chave secreta, que fica apenas no servidor, nunca no navegador
--- do visitante). Isso evita que qualquer pessoa mande dados falsos
--- direto para o banco pelo navegador.
+-- O site do portfolio e 100% estatico (GitHub Pages), sem servidor
+-- proprio, entao nao existe onde guardar uma chave secreta. Por
+-- isso o proprio navegador do visitante grava os eventos usando a
+-- chave publica (anon), mas essa chave so tem permissao de INSERIR
+-- registros, nunca de ler, alterar ou apagar o que ja foi gravado.
+-- Isso protege os dados: um visitante mal-intencionado pode no
+-- maximo mandar linhas falsas de evento, mas nunca ver ou mexer nas
+-- mensagens e estatisticas de outras pessoas.
 -- ================================================================
+create policy "Insercao publica de eventos"
+  on portfolio_events
+  for insert
+  to anon
+  with check (true);
+
+create policy "Insercao publica de mensagens"
+  on portfolio_leads
+  for insert
+  to anon
+  with check (true);

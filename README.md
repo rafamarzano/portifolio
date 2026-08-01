@@ -25,18 +25,25 @@ de dados e sistema de login.
    o navegador). Entre com o e-mail e senha criados no passo 2.
 
 5. **Publique os arquivos**: copie `login.html`, `painel.html`, a
-   pasta `js/` (com `auth.js`) para a raiz do seu site publicado
-   (GitHub Pages ou Vercel), junto com os demais arquivos do
+   pasta `js/` (com `auth.js` e `tracking.js`) para a raiz do seu site
+   publicado (GitHub Pages ou Vercel), junto com os demais arquivos do
    portfolio. Faca commit e push do repositorio.
 
 6. **Acesse o painel publicado**: depois do deploy, va ate
    `seudominio.com/login.html` para entrar. Depois do login voce sera
    levado automaticamente para `painel.html`.
 
+## Como o rastreamento funciona
+
+O arquivo `js/tracking.js` (ja incluido em `index.html`) registra
+automaticamente as visitas, os cliques em botoes de contato e os
+videos assistidos no portfolio, alem de gravar as mensagens enviadas
+pelo formulario. Esses dados alimentam o painel em `painel.html`.
+
 ## Observacao importante
 
-As tabelas so permitem leitura (select) para usuarios autenticados. A
-gravacao de eventos e mensagens deve ser feita pelo lado servidor do
-site (usando a service_role key do Supabase), nunca pela chave publica
-usada neste painel. Veja os comentarios no final de `setup.sql` para
-mais detalhes.
+As tabelas so permitem leitura (select) para usuarios autenticados.
+Ja a gravacao (insert) e liberada para o publico, mas apenas para
+inserir linhas novas: ninguem alem de quem faz login consegue ler,
+alterar ou apagar o que ja foi gravado. Veja os comentarios em
+`setup.sql` para mais detalhes.
