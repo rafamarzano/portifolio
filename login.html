@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acesso restrito · Painel</title>
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/auth.js"></script>
+
+<style>
+  :root{
+    --cereja: #670626;
+    --cereja-escuro: #4C041D;
+    --creme: #E3DFCE;
+    --branco: #FFFFFF;
+    --chocolate: #3D2722;
+    --chocolate-suave: #7A6B63;
+    --borda: #E4E2DD;
+    --verde-sucesso: #5E7F47;
+    --vermelho-erro: #8E1825;
+    --raio: 20px;
+    --raio-pequeno: 12px;
+    --sombra: 0 20px 48px -20px rgba(61,39,34,0.25);
+    --serif: "Fraunces", serif;
+    --sans: "Outfit", sans-serif;
+  }
+  *, *::before, *::after{ box-sizing: border-box; }
+  body{
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--creme);
+    color: var(--chocolate);
+    font-family: var(--sans);
+    padding: 24px;
+  }
+  .cartao-login{
+    width: 100%;
+    max-width: 400px;
+    background: var(--branco);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    padding: 40px 34px;
+  }
+  .logo-painel{
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 28px;
+    color: var(--chocolate);
+  }
+  .logo-painel .ponto{ color: var(--cereja); }
+  h1{
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 8px;
+    text-align: center;
+    color: var(--chocolate);
+  }
+  .subtitulo{
+    font-size: 0.92rem;
+    color: var(--chocolate-suave);
+    text-align: center;
+    margin: 0 0 28px;
+    line-height: 1.5;
+  }
+  .campo-form{ margin-bottom: 18px; }
+  .campo-form label{
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--chocolate);
+  }
+  .campo-form input{
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: var(--raio-pequeno);
+    border: 1.5px solid var(--borda);
+    background: var(--creme);
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    color: var(--chocolate);
+  }
+  .campo-form input:focus{
+    outline: none;
+    border-color: var(--cereja);
+  }
+  .link-esqueci{
+    display: block;
+    text-align: right;
+    font-size: 0.82rem;
+    color: var(--cereja);
+    text-decoration: none;
+    margin: -6px 0 22px;
+  }
+  .link-esqueci:hover{ text-decoration: underline; }
+  .botao-primario{
+    width: 100%;
+    padding: 13px;
+    border-radius: 100px;
+    border: none;
+    background: var(--cereja);
+    color: var(--branco);
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .botao-primario:hover{ background: var(--cereja-escuro); }
+  .botao-primario:disabled{ opacity: 0.7; cursor: default; }
+  .faixa-erro{
+    background: rgba(142,24,37,0.08);
+    border: 1px solid var(--vermelho-erro);
+    color: var(--vermelho-erro);
+    border-radius: var(--raio-pequeno);
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    margin-bottom: 18px;
+    display: none;
+  }
+  .faixa-sucesso{
+    background: rgba(94,127,71,0.1);
+    border: 1px solid var(--verde-sucesso);
+    color: var(--verde-sucesso);
+    border-radius: var(--raio-pequeno);
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    margin-top: 18px;
+    display: none;
+  }
+  .texto-recuperar{
+    font-size: 0.88rem;
+    color: var(--chocolate-suave);
+    margin: 0 0 18px;
+    line-height: 1.5;
+  }
+  #link-voltar{
+    display: block;
+    text-align: center;
+    margin-top: 16px;
+    font-size: 0.85rem;
+    color: var(--chocolate-suave);
+    text-decoration: none;
+  }
+  #link-voltar:hover{ color: var(--cereja); }
+</style>
+</head>
+<body>
+
+<div class="cartao-login">
+  <div class="logo-painel">meu<span class="ponto">.</span>painel</div>
+  <h1>Acesso restrito</h1>
+  <p class="subtitulo">Faça login para ver os números do seu portfólio.</p>
+
+  <form id="form-login">
+    <div class="faixa-erro" id="erro-login"></div>
+    <div class="campo-form">
+      <label for="campo-email">E-mail</label>
+      <input type="email" id="campo-email" required autocomplete="username">
+    </div>
+    <div class="campo-form">
+      <label for="campo-senha">Senha</label>
+      <input type="password" id="campo-senha" required autocomplete="current-password">
+    </div>
+    <a href="#" class="link-esqueci" id="link-esqueci">Esqueci minha senha</a>
+    <button type="submit" class="botao-primario" id="botao-entrar">Entrar</button>
+  </form>
+
+  <form id="form-recuperar" style="display:none;">
+    <p class="texto-recuperar">Digite seu e-mail para receber um link de redefinição de senha.</p>
+    <div class="campo-form">
+      <label for="campo-email-recuperar">E-mail</label>
+      <input type="email" id="campo-email-recuperar" required>
+    </div>
+    <button type="submit" class="botao-primario" id="botao-recuperar">Enviar link</button>
+    <div class="faixa-sucesso" id="sucesso-recuperar"></div>
+    <a href="#" id="link-voltar">Voltar para o login</a>
+  </form>
+</div>
+
+<script>
+  // Se já existir uma sessão ativa, pula direto para o painel.
+  (async function () {
+    const { data } = await sb.auth.getSession();
+    if (data.session) {
+      window.location.href = "painel.html";
+    }
+  })();
+
+  const formLogin = document.getElementById("form-login");
+  const formRecuperar = document.getElementById("form-recuperar");
+  const erroLogin = document.getElementById("erro-login");
+  const botaoEntrar = document.getElementById("botao-entrar");
+
+  formLogin.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    erroLogin.style.display = "none";
+
+    const email = document.getElementById("campo-email").value.trim();
+    const senha = document.getElementById("campo-senha").value;
+
+    botaoEntrar.disabled = true;
+    botaoEntrar.textContent = "Entrando...";
+
+    try {
+      await Auth.login(email, senha);
+      window.location.href = "painel.html";
+    } catch (err) {
+      erroLogin.textContent = err.message;
+      erroLogin.style.display = "block";
+      botaoEntrar.disabled = false;
+      botaoEntrar.textContent = "Entrar";
+    }
+  });
+
+  document.getElementById("link-esqueci").addEventListener("click", function (e) {
+    e.preventDefault();
+    formLogin.style.display = "none";
+    formRecuperar.style.display = "block";
+  });
+
+  document.getElementById("link-voltar").addEventListener("click", function (e) {
+    e.preventDefault();
+    formRecuperar.style.display = "none";
+    formLogin.style.display = "block";
+  });
+
+  formRecuperar.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const email = document.getElementById("campo-email-recuperar").value.trim();
+    const botao = document.getElementById("botao-recuperar");
+    const sucesso = document.getElementById("sucesso-recuperar");
+
+    botao.disabled = true;
+    botao.textContent = "Enviando...";
+    sucesso.style.display = "none";
+
+    try {
+      await Auth.recuperarSenha(email);
+      sucesso.textContent = "Link enviado! Confira sua caixa de entrada.";
+      sucesso.style.display = "block";
+    } catch (err) {
+      sucesso.style.display = "none";
+      alert(err.message);
+    }
+
+    botao.disabled = false;
+    botao.textContent = "Enviar link";
+  });
+</script>
+
+</body>
+</html>
