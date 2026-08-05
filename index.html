@@ -1381,6 +1381,8 @@ const PORTFOLIO_VIDEOS = [
   { id: "kfmjTGT1gL0", categorias: ["beleza"], url: "https://youtube.com/shorts/kfmjTGT1gL0", tituloPt: "Skincare ASMR – Garnier", tituloEn: "ASMR skincare – Garnier", capa: "imagens/portfolio-videos/capa-skincare-garnier-asmr.jpg" },
   { id: "kwDV78lrpYU", categorias: ["ads"], url: "https://youtube.com/shorts/kwDV78lrpYU", tituloPt: "Gel de unha – Bluwe", tituloEn: "Nail gel – Bluwe" },
   { id: "h8v-Lkg7GYw", categorias: ["moda"], url: "https://youtube.com/shorts/h8v-Lkg7GYw", tituloPt: "Unboxing de roupas – Temu", tituloEn: "Clothing unboxing – Temu", capa: "imagens/portfolio-videos/capa-unboxing-temu.jpg" },
+  { id: "ZYt1VQgzwhg", categorias: ["tech"], url: "https://youtube.com/shorts/ZYt1VQgzwhg", tituloPt: "Robô aspirador – ABIR K30", tituloEn: "Robot vacuum – ABIR K30" },
+  { id: "PZXHUwaRA58", categorias: ["gastronomia", "ads"], url: "https://youtube.com/shorts/PZXHUwaRA58", tituloPt: "Promo – Bacio di Latte", tituloEn: "Promo – Bacio di Latte" },
 ];
 
 // EDITE AQUI: fotos da galeria (galeria simples, sem filtro, sem título
@@ -1394,8 +1396,9 @@ const PORTFOLIO_FOTOS = [
   { imagem: "imagens/portfolio-fotos/editorial-look.jpg", posicao: "center 10%", altPt: "Editorial de look completo", altEn: "Full outfit editorial" },
   { imagem: "imagens/portfolio-fotos/acessorios-copa.jpg", posicao: "center 20%", altPt: "Still de acessórios, brincos", altEn: "Accessories still, earrings" },
   { imagem: "imagens/portfolio-fotos/protetor-solar.jpg", posicao: "center", altPt: "Still de produto, protetor solar", altEn: "Product still, sunscreen" },
-  { imagem: "imagens/portfolio-fotos/still-acessorios.jpg", posicao: "center 30%", altPt: "Still de acessórios", altEn: "Accessories still" },
   { imagem: "imagens/portfolio-fotos/bone.jpg", posicao: "center 20%", altPt: "Still de produto, boné", altEn: "Product still, cap" },
+  { imagem: "imagens/portfolio-fotos/still-acessorios.jpg", posicao: "center 30%", altPt: "Still de acessórios", altEn: "Accessories still" },
+  { imagem: "imagens/portfolio-fotos/bold.jpg", posicao: "center 30%", altPt: "Still de produto, barra de proteína Bold", altEn: "Product still, Bold protein bar" },
 ];
 
 // EDITE AQUI: todo o conteúdo do site em português (pt) e inglês (en).
@@ -1444,7 +1447,7 @@ const TEXTOS = {
       tituloDestaque: "filmei",
       tituloDepois: " para marcas",
       texto: "Cada roteiro nasce de um briefing lido com atenção e entregue com estética, verdade e demonstração real do produto.",
-      categorias: { todos: "Todos", ads: "Ads", beleza: "Beleza", moda: "Moda e acessórios" },
+      categorias: { todos: "Todos", ads: "Ads", beleza: "Beleza", moda: "Moda e acessórios", tech: "Tech", gastronomia: "Gastronomia" },
       assistir: "Assistir no YouTube",
     },
     portfolioFotos: {
@@ -1559,7 +1562,7 @@ const TEXTOS = {
       tituloDestaque: "filmed",
       tituloDepois: " for brands",
       texto: "Every script starts with a briefing read carefully, and is delivered with aesthetics, truth and a real demonstration of the product.",
-      categorias: { todos: "All", ads: "Ads", beleza: "Beauty", moda: "Fashion and accessories" },
+      categorias: { todos: "All", ads: "Ads", beleza: "Beauty", moda: "Fashion and accessories", tech: "Tech", gastronomia: "Food" },
       assistir: "Watch on YouTube",
     },
     portfolioFotos: {
@@ -1761,7 +1764,7 @@ function renderPortfolioVideos(){
     t.portfolioVideos.tituloAntes + "<em>" + t.portfolioVideos.tituloDestaque + "</em>" + t.portfolioVideos.tituloDepois;
   document.getElementById("portfolio-videos-texto").textContent = t.portfolioVideos.texto;
 
-  const ordemCategorias = ["todos", "ads", "beleza", "moda"];
+  const ordemCategorias = ["todos", "ads", "beleza", "moda", "tech", "gastronomia"];
   const filtrosEl = document.getElementById("filtros-videos");
   const gradeEl = document.getElementById("grade-videos");
 
