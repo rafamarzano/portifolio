@@ -462,6 +462,20 @@
     width: 100%;
     height: auto;
   }
+  .sobre-foto-video{
+    height: 0;
+    padding-top: 177.778%;
+    cursor: pointer;
+  }
+  .sobre-foto-video .cartao-trabalho-thumb,
+  .sobre-foto-video .cartao-trabalho-video{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 0;
+  }
 
   .sobre-destaques{
     display: grid;
@@ -1162,8 +1176,9 @@
        ============================================================ -->
   <section class="container" id="sobre">
     <div class="sobre-grade">
-      <div class="sobre-foto" id="sobre-foto-aria">
-        <img class="sobre-foto-foto" id="sobre-foto-img" src="imagens/sobre.jpg" alt="" style="object-position: center 25%;">
+      <div class="sobre-foto sobre-foto-video" id="sobre-foto-aria" data-video-id="bUyMsL9yS6g">
+        <img class="cartao-trabalho-thumb" id="sobre-foto-img" src="https://i.ytimg.com/vi/bUyMsL9yS6g/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/bUyMsL9yS6g/hqdefault.jpg';" alt="" loading="lazy">
+        <button type="button" class="cartao-trabalho-play" id="sobre-foto-play"></button>
       </div>
       <div class="sobre-texto revelar revelar-atraso-2">
         <span class="eyebrow" id="sobre-eyebrow"></span>
@@ -1754,7 +1769,28 @@ function renderSobre(){
     t.sobre.paragrafos.map(p => "<p>" + p + "</p>").join("");
   document.getElementById("sobre-lista").innerHTML =
     t.sobre.diferenciais.map(d => "<li>" + d + "</li>").join("");
-  document.getElementById("sobre-foto-img").alt = "Retrato de " + DADOS.nomeCompleto;
+  const imgSobreFoto = document.getElementById("sobre-foto-img");
+  if(imgSobreFoto){
+    imgSobreFoto.alt = "Retrato de " + DADOS.nomeCompleto;
+  }
+
+  const textoReproduzirSobre = idiomaAtual === "pt" ? "Reproduzir vídeo" : "Play video";
+  const botaoPlaySobre = document.getElementById("sobre-foto-play");
+  if(botaoPlaySobre){
+    botaoPlaySobre.setAttribute("aria-label", textoReproduzirSobre + ": " + DADOS.nomeCompleto);
+  }
+
+  const containerSobreVideo = document.getElementById("sobre-foto-aria");
+  if(containerSobreVideo && !containerSobreVideo.dataset.videoLigado){
+    containerSobreVideo.dataset.videoLigado = "1";
+    containerSobreVideo.addEventListener("click", function(){
+      const id = containerSobreVideo.dataset.videoId;
+      containerSobreVideo.innerHTML =
+        '<iframe class="cartao-trabalho-video" src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0" title="' + DADOS.nomeCompleto + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+      containerSobreVideo.style.cursor = "default";
+      Tracking.evento("video_view", id, { title: "Sobre mim" });
+    });
+  }
 }
 
 function renderPortfolioVideos(){
