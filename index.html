@@ -1406,6 +1406,8 @@ const PORTFOLIO_VIDEOS = [
   { id: "Bv-hVPY1w54", categorias: ["gastronomia"], url: "https://youtube.com/shorts/Bv-hVPY1w54", tituloPt: "Receita – LaCreme", tituloEn: "Recipe – LaCreme" },
   { id: "kwDV78lrpYU", categorias: ["ads"], url: "https://youtube.com/shorts/kwDV78lrpYU", tituloPt: "Gel de unha – Bluwe", tituloEn: "Nail gel – Bluwe" },
   { id: "udcFJBn_Ycw", categorias: ["decor"], url: "https://youtube.com/shorts/udcFJBn_Ycw", tituloPt: "Luminária Cogumelo", tituloEn: "Mushroom Lamp" },
+  { id: "1BbS9kiljks", categorias: ["decor"], url: "https://youtube.com/shorts/1BbS9kiljks", tituloPt: "Kit de Velas – Temu", tituloEn: "Candle Kit – Temu" },
+  { id: "i6HQHGzYjVA", categorias: ["wellness-fit"], url: "https://youtube.com/shorts/i6HQHGzYjVA", tituloPt: "Barrinha Proteica – BOLD", tituloEn: "Protein Bar – BOLD" },
 ];
 
 // EDITE AQUI: fotos da galeria (galeria simples, sem filtro, sem título
@@ -1474,7 +1476,7 @@ const TEXTOS = {
       tituloDestaque: "filmei",
       tituloDepois: " para marcas",
       texto: "Cada roteiro nasce de um briefing lido com atenção e entregue com estética, verdade e demonstração real do produto.",
-      categorias: { todos: "Todos", ads: "Ads", beleza: "Beleza", moda: "Moda e acessórios", tech: "Tech", gastronomia: "Gastronomia", decor: "Decor" },
+      categorias: { todos: "Todos", ads: "Ads", beleza: "Beleza", moda: "Moda e acessórios", tech: "Tech", gastronomia: "Gastronomia", decor: "Decor", "wellness-fit": "Wellness/Fit" },
       assistir: "Assistir no YouTube",
     },
     portfolioFotos: {
@@ -1589,7 +1591,7 @@ const TEXTOS = {
       tituloDestaque: "filmed",
       tituloDepois: " for brands",
       texto: "Every script starts with a briefing read carefully, and is delivered with aesthetics, truth and a real demonstration of the product.",
-      categorias: { todos: "All", ads: "Ads", beleza: "Beauty", moda: "Fashion and accessories", tech: "Tech", gastronomia: "Food", decor: "Decor" },
+      categorias: { todos: "All", ads: "Ads", beleza: "Beauty", moda: "Fashion and accessories", tech: "Tech", gastronomia: "Food", decor: "Decor", "wellness-fit": "Wellness/Fit" },
       assistir: "Watch on YouTube",
     },
     portfolioFotos: {
@@ -1812,7 +1814,7 @@ function renderPortfolioVideos(){
     t.portfolioVideos.tituloAntes + "<em>" + t.portfolioVideos.tituloDestaque + "</em>" + t.portfolioVideos.tituloDepois;
   document.getElementById("portfolio-videos-texto").textContent = t.portfolioVideos.texto;
 
-  const ordemCategorias = ["todos", "ads", "beleza", "moda", "tech", "gastronomia", "decor"];
+  const ordemCategorias = ["todos", "ads", "beleza", "moda", "tech", "gastronomia", "decor", "wellness-fit"];
   const filtrosEl = document.getElementById("filtros-videos");
   const gradeEl = document.getElementById("grade-videos");
 
