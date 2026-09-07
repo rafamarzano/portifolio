@@ -348,30 +348,32 @@ section{ position:relative; padding:100px 0 90px; }
   font-size:.95rem; margin-bottom:10px;
 }
 .about-title{ font-family:var(--f-alt); font-size:clamp(2rem,5vw,3.2rem); color:var(--black); margin:0 0 20px; }
-.about-body{ display:flex; gap:34px; flex-wrap:wrap; align-items:flex-start; }
+.about-body{ display:flex; gap:34px; flex-wrap:wrap; align-items:center; }
 .about-text{ flex:1 1 340px; font-family:var(--f-serif); font-style:italic; font-size:1.18rem; line-height:1.75; color:#2b2320; }
 .about-text .cap{
   float:left; font-family:var(--f-alt); font-style:normal; font-size:4.6rem; line-height:.8;
   color:var(--pink-hot); padding:6px 10px 0 0;
 }
 .about-text mark{ background:var(--yellow); padding:1px 6px; box-decoration-break:clone; -webkit-box-decoration-break:clone; }
-.about-side{ flex:0 0 250px; display:flex; flex-direction:column; align-items:center; gap:22px; }
-.photo-stack{ position:relative; width:190px; height:280px; }
-.photo-stack .polaroid{ position:absolute; top:0; left:0; width:190px; transition:transform .3s ease; }
-.photo-stack .polaroid:nth-child(1){ transform:rotate(-8deg) translate(-16px,-4px); z-index:1; }
-.photo-stack .polaroid:nth-child(2){ transform:rotate(5deg) translate(12px,6px); z-index:2; }
-.photo-stack .polaroid:nth-child(3){ transform:rotate(-2deg) translate(-2px,18px); z-index:3; }
-.photo-stack:hover .polaroid:nth-child(1){ transform:rotate(-14deg) translate(-46px,-10px); }
-.photo-stack:hover .polaroid:nth-child(2){ transform:rotate(9deg) translate(40px,2px); }
-.photo-stack:hover .polaroid:nth-child(3){ transform:rotate(-1deg) translate(0,26px); }
+.about-side{ flex:0 0 280px; display:flex; flex-direction:column; align-items:center; gap:30px; }
+.photo-stack{ position:relative; width:230px; height:340px; }
+.photo-stack .polaroid{ position:absolute; top:0; left:0; width:230px; transition:transform .3s ease; }
+.photo-stack .polaroid:nth-child(1){ transform:rotate(-9deg) translate(-20px,-6px); z-index:1; }
+.photo-stack .polaroid:nth-child(2){ transform:rotate(6deg) translate(16px,8px); z-index:2; }
+.photo-stack .polaroid:nth-child(3){ transform:rotate(-2deg) translate(-2px,22px); z-index:3; }
+.photo-stack:hover .polaroid:nth-child(1){ transform:rotate(-15deg) translate(-54px,-12px); }
+.photo-stack:hover .polaroid:nth-child(2){ transform:rotate(10deg) translate(48px,4px); }
+.photo-stack:hover .polaroid:nth-child(3){ transform:rotate(-1deg) translate(0,30px); }
 @media (max-width:640px){
-  .photo-stack{ width:150px; height:230px; }
-  .photo-stack .polaroid{ width:150px; }
+  .photo-stack{ width:180px; height:270px; }
+  .photo-stack .polaroid{ width:180px; }
 }
 .postit{
-  width:190px; background:var(--yellow); padding:16px; box-shadow:6px 6px 0 rgba(0,0,0,.18);
-  font-family:var(--f-script); font-weight:700; font-size:1.05rem; transform:rotate(-4deg); color:var(--black);
+  width:230px; background:var(--yellow); padding:26px 24px; box-shadow:6px 6px 0 rgba(0,0,0,.18);
+  font-family:var(--f-script); font-weight:700; font-size:1.15rem; line-height:1.5;
+  transform:rotate(-4deg); color:var(--black);
 }
+@media (max-width:640px){ .postit{ width:180px; } }
 .about-tags{ display:flex; flex-wrap:wrap; gap:10px; margin-top:26px; }
 .about-tags span{
   font-family:var(--f-label); font-size:.78rem; letter-spacing:.06em;
@@ -789,6 +791,8 @@ section{ position:relative; padding:100px 0 90px; }
      SOBRE MIM
      ========================================================================== -->
 <section class="about" id="about">
+  <svg class="doodle doodle-interactive float-a" style="top:6%;left:2%;--r:-10deg" width="26" height="26" viewBox="0 0 24 24" fill="var(--pink-hot)"><path d="M12 21s-7.5-4.6-10-9.3C0.4 8 2.4 4 6.4 4c2 0 3.6 1.1 4.6 2.7C12 5.1 13.6 4 15.6 4c4 0 6 4 4.4 7.7C19.5 16.4 12 21 12 21z"/></svg>
+  <svg class="doodle doodle-interactive spin-slow" style="bottom:8%;right:3%" width="24" height="24" viewBox="0 0 24 24" fill="var(--yellow)" stroke="var(--black)" stroke-width="1"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4l-6.3 4.4L8 13.6 2 9.2h7.6z"/></svg>
   <div class="wrap">
     <div class="diary reveal">
       <span class="about-kicker">diário da creator · pg. 01</span>
@@ -849,6 +853,8 @@ section{ position:relative; padding:100px 0 90px; }
      VÍDEOS
      ========================================================================== -->
 <section class="videos" id="videos">
+  <svg class="doodle doodle-interactive float-b" style="top:5%;right:2%;--r:8deg" width="24" height="24" viewBox="0 0 24 24" fill="var(--black)"><path d="M12 21s-7.5-4.6-10-9.3C0.4 8 2.4 4 6.4 4c2 0 3.6 1.1 4.6 2.7C12 5.1 13.6 4 15.6 4c4 0 6 4 4.4 7.7C19.5 16.4 12 21 12 21z"/></svg>
+  <svg class="doodle doodle-interactive spin-slow" style="bottom:4%;left:2%" width="20" height="20" viewBox="0 0 24 24" fill="var(--white)" stroke="var(--black)" stroke-width="1"><polygon points="12,2 20,9 12,22 4,9"/></svg>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-kicker">vídeos que já bombaram</span>
@@ -865,6 +871,12 @@ section{ position:relative; padding:100px 0 90px; }
      FOTOS
      ========================================================================== -->
 <section class="photos" id="photos">
+  <svg class="doodle doodle-interactive float-a" style="top:6%;left:3%;--r:12deg" width="26" height="26" viewBox="0 0 24 24">
+    <ellipse cx="8" cy="10" rx="5" ry="7" transform="rotate(-28 8 10)" fill="var(--pink-hot)" stroke="var(--black)" stroke-width=".6"/>
+    <ellipse cx="16" cy="10" rx="5" ry="7" transform="rotate(28 16 10)" fill="var(--pink)" stroke="var(--black)" stroke-width=".6"/>
+    <rect x="11.2" y="5" width="1.6" height="14" rx="1" fill="var(--black)"/>
+  </svg>
+  <svg class="doodle doodle-interactive float-b" style="bottom:5%;right:3%;--r:-8deg" width="22" height="22" viewBox="0 0 24 24" fill="var(--pink)"><path d="M12 21s-7.5-4.6-10-9.3C0.4 8 2.4 4 6.4 4c2 0 3.6 1.1 4.6 2.7C12 5.1 13.6 4 15.6 4c4 0 6 4 4.4 7.7C19.5 16.4 12 21 12 21z"/></svg>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-kicker">still de produto e still em uso</span>
@@ -880,6 +892,8 @@ section{ position:relative; padding:100px 0 90px; }
      SERVIÇOS
      ========================================================================== -->
 <section class="services" id="services">
+  <svg class="doodle doodle-interactive spin-slow" style="top:5%;right:3%" width="22" height="22" viewBox="0 0 24 24" fill="var(--pink-hot)" stroke="var(--black)" stroke-width="1"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4l-6.3 4.4L8 13.6 2 9.2h7.6z"/></svg>
+  <svg class="doodle doodle-interactive float-a" style="bottom:6%;left:2%;--r:-10deg" width="24" height="24" viewBox="0 0 24 24" fill="#c9f2ff" stroke="var(--black)" stroke-width="1"><polygon points="12,2 20,9 12,22 4,9"/></svg>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-kicker">o que eu entrego</span>
@@ -895,6 +909,8 @@ section{ position:relative; padding:100px 0 90px; }
      PROCESSO
      ========================================================================== -->
 <section class="processo" id="processo">
+  <svg class="doodle doodle-interactive float-b" style="top:5%;left:3%;--r:6deg" width="24" height="24" viewBox="0 0 24 24" fill="var(--yellow)" stroke="var(--black)" stroke-width=".6"><path d="M12 21s-7.5-4.6-10-9.3C0.4 8 2.4 4 6.4 4c2 0 3.6 1.1 4.6 2.7C12 5.1 13.6 4 15.6 4c4 0 6 4 4.4 7.7C19.5 16.4 12 21 12 21z"/></svg>
+  <svg class="doodle doodle-interactive spin-slow" style="bottom:5%;right:2%" width="20" height="20" viewBox="0 0 24 24" fill="var(--pink)" stroke="var(--black)" stroke-width="1"><polygon points="12,2 20,9 12,22 4,9"/></svg>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-kicker">como funciona</span>
@@ -910,6 +926,8 @@ section{ position:relative; padding:100px 0 90px; }
      DÚVIDAS
      ========================================================================== -->
 <section class="duvidas" id="duvidas">
+  <svg class="doodle doodle-interactive float-a" style="top:6%;right:3%;--r:-8deg" width="24" height="24" viewBox="0 0 24 24" fill="var(--black)"><path d="M12 21s-7.5-4.6-10-9.3C0.4 8 2.4 4 6.4 4c2 0 3.6 1.1 4.6 2.7C12 5.1 13.6 4 15.6 4c4 0 6 4 4.4 7.7C19.5 16.4 12 21 12 21z"/></svg>
+  <svg class="doodle doodle-interactive spin-slow" style="bottom:6%;left:3%" width="22" height="22" viewBox="0 0 24 24" fill="var(--pink-hot)" stroke="var(--black)" stroke-width="1"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4l-6.3 4.4L8 13.6 2 9.2h7.6z"/></svg>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-kicker">tira dúvidas</span>
@@ -931,6 +949,9 @@ section{ position:relative; padding:100px 0 90px; }
      CONTATO
      ========================================================================== -->
 <section class="contact" id="contact">
+  <svg class="doodle doodle-interactive float-b" style="top:5%;left:3%;--r:-10deg" width="26" height="26" viewBox="0 0 24 24" fill="var(--pink-hot)"><path d="M12 21s-7.5-4.6-10-9.3C0.4 8 2.4 4 6.4 4c2 0 3.6 1.1 4.6 2.7C12 5.1 13.6 4 15.6 4c4 0 6 4 4.4 7.7C19.5 16.4 12 21 12 21z"/></svg>
+  <svg class="doodle doodle-interactive spin-slow" style="top:8%;right:4%" width="22" height="22" viewBox="0 0 24 24" fill="var(--yellow)" stroke="var(--pink-pale)" stroke-width="1"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4l-6.3 4.4L8 13.6 2 9.2h7.6z"/></svg>
+  <svg class="doodle doodle-interactive float-a" style="bottom:10%;right:3%;--r:8deg" width="20" height="20" viewBox="0 0 24 24" fill="var(--pink-pale)" stroke="var(--pink-hot)" stroke-width="1"><polygon points="12,2 20,9 12,22 4,9"/></svg>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-kicker" style="color:var(--pink-hot)">última página da revista</span>
@@ -1012,7 +1033,7 @@ const TICKER_PHRASES = [
 // MARCAS TRABALHADAS — ticker rolante antes da seção de vídeos.
 // [EDITAR] lista confirmada pela Rafa: só as marcas reais que já confiaram no trabalho.
 const BRANDS = [
-  "Garnier", "L'Oréal Paris Elseve", "ZOSS", "Lano Capilar Juliane Costa", "Coala Home",
+  "Garnier", "L'Oréal Paris Elseve", "ZOSS", "Plano Capilar Juliane Costa", "Coala Home",
 ];
 
 // DADOS DOS VÍDEOS — categorias reais do portfólio rafamarzano.online.
@@ -1236,7 +1257,7 @@ document.querySelectorAll('.hero-social, .social-stickers').forEach(el =>
   el.addEventListener('click', rastrearCliqueDeCanal)
 );
 
-// ---- doodles interativos do hero: hover já reage via CSS, clique dá um "pop" ----
+// ---- doodles interativos (hero e demais seções): hover já reage via CSS, clique dá um "pop" ----
 document.querySelectorAll('.doodle-interactive').forEach(el => {
   el.addEventListener('click', () => {
     el.classList.remove('pop');
