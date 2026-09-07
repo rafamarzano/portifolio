@@ -13,8 +13,9 @@
   ============================================================================
   HTML + CSS + JS, sem libs externas além do Google Fonts e do cliente
   Supabase (js/tracking.js), usado só pra registrar visitas, cliques de
-  contato e mensagens do formulário no painel administrativo existente
-  (painel.html). Ver comentários perto do fechamento do <body>.
+  contato, vídeos assistidos e mensagens do formulário no painel
+  administrativo existente (painel.html). Ver comentários perto do
+  fechamento do <body>.
 
   COMO EDITAR O CONTEÚDO:
   - Quase todo o conteúdo de texto está direto no HTML abaixo, organizado por
@@ -434,13 +435,15 @@ section{ position:relative; padding:100px 0 90px; }
 @media (max-width:680px){ .video-grid{ grid-template-columns:repeat(2,1fr); } }
 @media (max-width:420px){ .video-grid{ grid-template-columns:1fr; } }
 .vcard{
+  display:block; text-decoration:none; color:inherit;
   background:var(--white); border:2.5px solid var(--black); box-shadow:var(--shadow-hard);
   overflow:hidden; transition:transform .3s ease, box-shadow .3s ease; cursor:pointer;
   min-width:0; /* impede que texto longo force a coluna a crescer e desconfigure o tamanho */
 }
 .vcard:hover{ transform:translateY(-8px) rotate(-1deg); box-shadow:8px 10px 0 var(--pink-hot); }
-.vcard .cover{ position:relative; aspect-ratio:9/16; }
+.vcard .cover{ position:relative; aspect-ratio:9/16; background:#000; }
 .vcard .cover .ph{ position:absolute; inset:0; font-size:.75rem; overflow-wrap:anywhere; }
+.vcard .cover-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
 .vcard .cat-tag{
   position:absolute; top:10px; left:10px; font-family:var(--f-label); font-size:.68rem;
   letter-spacing:.06em; background:var(--black); color:var(--pink-pale); padding:4px 10px;
@@ -793,6 +796,19 @@ section{ position:relative; padding:100px 0 90px; }
 <section class="about" id="about">
   <svg class="doodle doodle-interactive float-a" style="top:6%;left:2%;--r:-10deg" width="26" height="26" viewBox="0 0 24 24" fill="var(--pink-hot)"><path d="M12 21s-7.5-4.6-10-9.3C0.4 8 2.4 4 6.4 4c2 0 3.6 1.1 4.6 2.7C12 5.1 13.6 4 15.6 4c4 0 6 4 4.4 7.7C19.5 16.4 12 21 12 21z"/></svg>
   <svg class="doodle doodle-interactive spin-slow" style="bottom:8%;right:3%" width="24" height="24" viewBox="0 0 24 24" fill="var(--yellow)" stroke="var(--black)" stroke-width="1"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4l-6.3 4.4L8 13.6 2 9.2h7.6z"/></svg>
+  <svg class="doodle doodle-interactive float-b" style="top:14%;right:4%;--r:10deg" width="24" height="24" viewBox="0 0 24 24">
+    <ellipse cx="8" cy="10" rx="5" ry="7" transform="rotate(-28 8 10)" fill="var(--pink)" stroke="var(--black)" stroke-width=".6"/>
+    <ellipse cx="16" cy="10" rx="5" ry="7" transform="rotate(28 16 10)" fill="var(--pink-hot)" stroke="var(--black)" stroke-width=".6"/>
+    <rect x="11.2" y="5" width="1.6" height="14" rx="1" fill="var(--black)"/>
+  </svg>
+  <svg class="doodle doodle-interactive float-a" style="bottom:20%;left:4%;--r:8deg" width="24" height="24" viewBox="0 0 24 24">
+    <circle cx="12" cy="6" r="4" fill="var(--white)" stroke="var(--black)" stroke-width=".6"/>
+    <circle cx="12" cy="18" r="4" fill="var(--white)" stroke="var(--black)" stroke-width=".6"/>
+    <circle cx="6" cy="12" r="4" fill="var(--white)" stroke="var(--black)" stroke-width=".6"/>
+    <circle cx="18" cy="12" r="4" fill="var(--white)" stroke="var(--black)" stroke-width=".6"/>
+    <circle cx="12" cy="12" r="4" fill="var(--pink-hot)" stroke="var(--black)" stroke-width=".6"/>
+  </svg>
+  <svg class="doodle doodle-interactive spin-slow" style="top:44%;right:1%" width="20" height="20" viewBox="0 0 24 24"><polygon points="12,2 20,9 12,22 4,9" fill="var(--pink)" stroke="var(--black)" stroke-width="1"/></svg>
   <div class="wrap">
     <div class="diary reveal">
       <span class="about-kicker">diário da creator · pg. 01</span>
@@ -855,6 +871,13 @@ section{ position:relative; padding:100px 0 90px; }
 <section class="videos" id="videos">
   <svg class="doodle doodle-interactive float-b" style="top:5%;right:2%;--r:8deg" width="24" height="24" viewBox="0 0 24 24" fill="var(--black)"><path d="M12 21s-7.5-4.6-10-9.3C0.4 8 2.4 4 6.4 4c2 0 3.6 1.1 4.6 2.7C12 5.1 13.6 4 15.6 4c4 0 6 4 4.4 7.7C19.5 16.4 12 21 12 21z"/></svg>
   <svg class="doodle doodle-interactive spin-slow" style="bottom:4%;left:2%" width="20" height="20" viewBox="0 0 24 24" fill="var(--white)" stroke="var(--black)" stroke-width="1"><polygon points="12,2 20,9 12,22 4,9"/></svg>
+  <svg class="doodle doodle-interactive float-a" style="top:24%;left:1.5%;--r:-8deg" width="22" height="22" viewBox="0 0 24 24" fill="var(--pink-hot)"><path d="M12 21s-7.5-4.6-10-9.3C0.4 8 2.4 4 6.4 4c2 0 3.6 1.1 4.6 2.7C12 5.1 13.6 4 15.6 4c4 0 6 4 4.4 7.7C19.5 16.4 12 21 12 21z"/></svg>
+  <svg class="doodle doodle-interactive float-b" style="bottom:16%;right:1.5%;--r:12deg" width="24" height="24" viewBox="0 0 24 24">
+    <ellipse cx="8" cy="10" rx="5" ry="7" transform="rotate(-28 8 10)" fill="var(--yellow)" stroke="var(--black)" stroke-width=".6"/>
+    <ellipse cx="16" cy="10" rx="5" ry="7" transform="rotate(28 16 10)" fill="var(--white)" stroke="var(--black)" stroke-width=".6"/>
+    <rect x="11.2" y="5" width="1.6" height="14" rx="1" fill="var(--black)"/>
+  </svg>
+  <svg class="doodle doodle-interactive spin-slow" style="top:50%;right:3%" width="18" height="18" viewBox="0 0 24 24" fill="var(--pink)" stroke="var(--black)" stroke-width="1"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4l-6.3 4.4L8 13.6 2 9.2h7.6z"/></svg>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-kicker">vídeos que já bombaram</span>
@@ -877,6 +900,15 @@ section{ position:relative; padding:100px 0 90px; }
     <rect x="11.2" y="5" width="1.6" height="14" rx="1" fill="var(--black)"/>
   </svg>
   <svg class="doodle doodle-interactive float-b" style="bottom:5%;right:3%;--r:-8deg" width="22" height="22" viewBox="0 0 24 24" fill="var(--pink)"><path d="M12 21s-7.5-4.6-10-9.3C0.4 8 2.4 4 6.4 4c2 0 3.6 1.1 4.6 2.7C12 5.1 13.6 4 15.6 4c4 0 6 4 4.4 7.7C19.5 16.4 12 21 12 21z"/></svg>
+  <svg class="doodle doodle-interactive spin-slow" style="top:32%;right:2%" width="20" height="20" viewBox="0 0 24 24" fill="var(--yellow)" stroke="var(--black)" stroke-width="1"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4l-6.3 4.4L8 13.6 2 9.2h7.6z"/></svg>
+  <svg class="doodle doodle-interactive float-a" style="bottom:22%;left:1.5%;--r:14deg" width="24" height="24" viewBox="0 0 24 24">
+    <circle cx="12" cy="6" r="4" fill="var(--white)" stroke="var(--black)" stroke-width=".6"/>
+    <circle cx="12" cy="18" r="4" fill="var(--white)" stroke="var(--black)" stroke-width=".6"/>
+    <circle cx="6" cy="12" r="4" fill="var(--white)" stroke="var(--black)" stroke-width=".6"/>
+    <circle cx="18" cy="12" r="4" fill="var(--white)" stroke="var(--black)" stroke-width=".6"/>
+    <circle cx="12" cy="12" r="4" fill="var(--pink-hot)" stroke="var(--black)" stroke-width=".6"/>
+  </svg>
+  <svg class="doodle doodle-interactive spin-slow" style="top:12%;right:22%" width="18" height="18" viewBox="0 0 24 24" fill="#c9f2ff" stroke="var(--black)" stroke-width="1"><polygon points="12,2 20,9 12,22 4,9"/></svg>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-kicker">still de produto e still em uso</span>
@@ -894,6 +926,12 @@ section{ position:relative; padding:100px 0 90px; }
 <section class="services" id="services">
   <svg class="doodle doodle-interactive spin-slow" style="top:5%;right:3%" width="22" height="22" viewBox="0 0 24 24" fill="var(--pink-hot)" stroke="var(--black)" stroke-width="1"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4l-6.3 4.4L8 13.6 2 9.2h7.6z"/></svg>
   <svg class="doodle doodle-interactive float-a" style="bottom:6%;left:2%;--r:-10deg" width="24" height="24" viewBox="0 0 24 24" fill="#c9f2ff" stroke="var(--black)" stroke-width="1"><polygon points="12,2 20,9 12,22 4,9"/></svg>
+  <svg class="doodle doodle-interactive float-b" style="top:20%;left:1.5%;--r:10deg" width="22" height="22" viewBox="0 0 24 24" fill="var(--black)"><path d="M12 21s-7.5-4.6-10-9.3C0.4 8 2.4 4 6.4 4c2 0 3.6 1.1 4.6 2.7C12 5.1 13.6 4 15.6 4c4 0 6 4 4.4 7.7C19.5 16.4 12 21 12 21z"/></svg>
+  <svg class="doodle doodle-interactive spin-slow" style="bottom:24%;right:2%" width="24" height="24" viewBox="0 0 24 24">
+    <ellipse cx="8" cy="10" rx="5" ry="7" transform="rotate(-28 8 10)" fill="var(--pink)" stroke="var(--black)" stroke-width=".6"/>
+    <ellipse cx="16" cy="10" rx="5" ry="7" transform="rotate(28 16 10)" fill="var(--pink-hot)" stroke="var(--black)" stroke-width=".6"/>
+    <rect x="11.2" y="5" width="1.6" height="14" rx="1" fill="var(--black)"/>
+  </svg>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-kicker">o que eu entrego</span>
@@ -911,6 +949,14 @@ section{ position:relative; padding:100px 0 90px; }
 <section class="processo" id="processo">
   <svg class="doodle doodle-interactive float-b" style="top:5%;left:3%;--r:6deg" width="24" height="24" viewBox="0 0 24 24" fill="var(--yellow)" stroke="var(--black)" stroke-width=".6"><path d="M12 21s-7.5-4.6-10-9.3C0.4 8 2.4 4 6.4 4c2 0 3.6 1.1 4.6 2.7C12 5.1 13.6 4 15.6 4c4 0 6 4 4.4 7.7C19.5 16.4 12 21 12 21z"/></svg>
   <svg class="doodle doodle-interactive spin-slow" style="bottom:5%;right:2%" width="20" height="20" viewBox="0 0 24 24" fill="var(--pink)" stroke="var(--black)" stroke-width="1"><polygon points="12,2 20,9 12,22 4,9"/></svg>
+  <svg class="doodle doodle-interactive float-a" style="top:26%;right:1.5%;--r:-12deg" width="22" height="22" viewBox="0 0 24 24" fill="var(--pink-hot)"><path d="M12 21s-7.5-4.6-10-9.3C0.4 8 2.4 4 6.4 4c2 0 3.6 1.1 4.6 2.7C12 5.1 13.6 4 15.6 4c4 0 6 4 4.4 7.7C19.5 16.4 12 21 12 21z"/></svg>
+  <svg class="doodle doodle-interactive float-b" style="bottom:20%;left:1.5%;--r:8deg" width="24" height="24" viewBox="0 0 24 24">
+    <circle cx="12" cy="6" r="4" fill="var(--white)" stroke="var(--black)" stroke-width=".6"/>
+    <circle cx="12" cy="18" r="4" fill="var(--white)" stroke="var(--black)" stroke-width=".6"/>
+    <circle cx="6" cy="12" r="4" fill="var(--white)" stroke="var(--black)" stroke-width=".6"/>
+    <circle cx="18" cy="12" r="4" fill="var(--white)" stroke="var(--black)" stroke-width=".6"/>
+    <circle cx="12" cy="12" r="4" fill="var(--yellow)" stroke="var(--black)" stroke-width=".6"/>
+  </svg>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-kicker">como funciona</span>
@@ -928,6 +974,12 @@ section{ position:relative; padding:100px 0 90px; }
 <section class="duvidas" id="duvidas">
   <svg class="doodle doodle-interactive float-a" style="top:6%;right:3%;--r:-8deg" width="24" height="24" viewBox="0 0 24 24" fill="var(--black)"><path d="M12 21s-7.5-4.6-10-9.3C0.4 8 2.4 4 6.4 4c2 0 3.6 1.1 4.6 2.7C12 5.1 13.6 4 15.6 4c4 0 6 4 4.4 7.7C19.5 16.4 12 21 12 21z"/></svg>
   <svg class="doodle doodle-interactive spin-slow" style="bottom:6%;left:3%" width="22" height="22" viewBox="0 0 24 24" fill="var(--pink-hot)" stroke="var(--black)" stroke-width="1"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4l-6.3 4.4L8 13.6 2 9.2h7.6z"/></svg>
+  <svg class="doodle doodle-interactive float-b" style="top:26%;left:1.5%;--r:10deg" width="20" height="20" viewBox="0 0 24 24" fill="var(--yellow)" stroke="var(--black)" stroke-width="1"><polygon points="12,2 20,9 12,22 4,9"/></svg>
+  <svg class="doodle doodle-interactive float-a" style="bottom:22%;right:1.5%;--r:-10deg" width="24" height="24" viewBox="0 0 24 24">
+    <ellipse cx="8" cy="10" rx="5" ry="7" transform="rotate(-28 8 10)" fill="var(--pink)" stroke="var(--black)" stroke-width=".6"/>
+    <ellipse cx="16" cy="10" rx="5" ry="7" transform="rotate(28 16 10)" fill="var(--white)" stroke="var(--black)" stroke-width=".6"/>
+    <rect x="11.2" y="5" width="1.6" height="14" rx="1" fill="var(--black)"/>
+  </svg>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-kicker">tira dúvidas</span>
@@ -952,6 +1004,12 @@ section{ position:relative; padding:100px 0 90px; }
   <svg class="doodle doodle-interactive float-b" style="top:5%;left:3%;--r:-10deg" width="26" height="26" viewBox="0 0 24 24" fill="var(--pink-hot)"><path d="M12 21s-7.5-4.6-10-9.3C0.4 8 2.4 4 6.4 4c2 0 3.6 1.1 4.6 2.7C12 5.1 13.6 4 15.6 4c4 0 6 4 4.4 7.7C19.5 16.4 12 21 12 21z"/></svg>
   <svg class="doodle doodle-interactive spin-slow" style="top:8%;right:4%" width="22" height="22" viewBox="0 0 24 24" fill="var(--yellow)" stroke="var(--pink-pale)" stroke-width="1"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4l-6.3 4.4L8 13.6 2 9.2h7.6z"/></svg>
   <svg class="doodle doodle-interactive float-a" style="bottom:10%;right:3%;--r:8deg" width="20" height="20" viewBox="0 0 24 24" fill="var(--pink-pale)" stroke="var(--pink-hot)" stroke-width="1"><polygon points="12,2 20,9 12,22 4,9"/></svg>
+  <svg class="doodle doodle-interactive float-b" style="bottom:22%;left:2%;--r:-6deg" width="22" height="22" viewBox="0 0 24 24">
+    <ellipse cx="8" cy="10" rx="5" ry="7" transform="rotate(-28 8 10)" fill="var(--pink-pale)" stroke="var(--pink-hot)" stroke-width=".8"/>
+    <ellipse cx="16" cy="10" rx="5" ry="7" transform="rotate(28 16 10)" fill="var(--yellow)" stroke="var(--pink-hot)" stroke-width=".8"/>
+    <rect x="11.2" y="5" width="1.6" height="14" rx="1" fill="var(--pink-pale)"/>
+  </svg>
+  <svg class="doodle doodle-interactive spin-slow" style="top:40%;left:4%" width="18" height="18" viewBox="0 0 24 24" fill="var(--white)" stroke="var(--pink-hot)" stroke-width="1"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4l-6.3 4.4L8 13.6 2 9.2h7.6z"/></svg>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-kicker" style="color:var(--pink-hot)">última página da revista</span>
@@ -1049,34 +1107,37 @@ const CATEGORIES = [
   { key: "wellness-fit", label: "wellness/fit" },
 ];
 
-// [EDITAR se quiser] títulos e categorias migrados do site real.
-// "progress" é só decorativo (barra de progresso do card).
+// Vídeos reais do portfólio (rafamarzano.online) — "id" é o ID do vídeo no
+// YouTube (o trecho depois de /shorts/), usado pra montar a capa (thumbnail
+// real) e o link "assistir no youtube". "progress" é só decorativo (barra
+// de progresso do card).
 const VIDEOS = [
-  { title: "Rímel – Essence", cats: ["beleza"], progress: 60 },
-  { title: "Protetor Solar em Bastão – Ollie", cats: ["beleza"], progress: 55 },
-  { title: "Skincare – Garnier", cats: ["beleza"], progress: 70 },
-  { title: "Maquiagem – Sheglam", cats: ["beleza"], progress: 65 },
-  { title: "Bodycare – Dove", cats: ["beleza"], progress: 58 },
-  { title: "Skincare ASMR – Garnier", cats: ["beleza"], progress: 74 },
-  { title: "Haircare – Pantene", cats: ["beleza", "ads"], progress: 82 },
-  { title: "Haircare – Elseve", cats: ["beleza", "ads"], progress: 78 },
-  { title: "Unboxing de roupas – Temu", cats: ["moda"], progress: 66 },
-  { title: "Uma peça, sete looks – Shein", cats: ["moda"], progress: 90 },
-  { title: "Fit check academia – Dazy", cats: ["moda"], progress: 52 },
-  { title: "Acessório Dia dos Pais – Gemany", cats: ["moda"], progress: 48 },
-  { title: "Trend de acessórios", cats: ["moda"], progress: 61 },
-  { title: "Robô aspirador – ABIR K30", cats: ["tech"], progress: 57 },
-  { title: "Melhores preços – Decolar", cats: ["tech", "ads"], progress: 85 },
-  { title: "Parceria – iFood e Decolar", cats: ["tech"], progress: 63 },
-  { title: "Passaporte de pontos – Decolar", cats: ["tech"], progress: 50 },
-  { title: "Promo – Bacio di Latte", cats: ["gastronomia", "ads"], progress: 88 },
-  { title: "Receita – LaCreme", cats: ["gastronomia"], progress: 54 },
-  { title: "Gel de unha – Bluwe", cats: ["ads"], progress: 69 },
-  { title: "Luminária Cogumelo", cats: ["decor"], progress: 45 },
-  { title: "Kit de Velas – Temu", cats: ["decor"], progress: 49 },
-  { title: "3 coisas que não podem faltar no banheiro – Coala Home", cats: ["decor"], progress: 73 },
-  { title: "Campanha – Coala Home Chá Branco", cats: ["decor"], progress: 80 },
-  { title: "Barrinha Proteica – BOLD", cats: ["wellness-fit"], progress: 67 },
+  { title: "Rímel – Essence", id: "g5e03lePN-s", cats: ["beleza"], progress: 60 },
+  { title: "Protetor Solar em Bastão – Ollie", id: "ftPZUbps5l4", cats: ["beleza"], progress: 55 },
+  { title: "Skincare – Garnier", id: "4-u_Ixr91U0", cats: ["beleza"], progress: 70 },
+  { title: "Maquiagem – Sheglam", id: "9oCH6CQwJ8w", cats: ["beleza"], progress: 65 },
+  { title: "Bodycare – Dove", id: "Wc8cZthCIqY", cats: ["beleza"], progress: 58 },
+  { title: "Skincare ASMR – Garnier", id: "kfmjTGT1gL0", cats: ["beleza"], progress: 74 },
+  { title: "Haircare – Pantene", id: "OqADOIezdro", cats: ["beleza", "ads"], progress: 82 },
+  { title: "Haircare – Elseve", id: "MhpClbp7ydE", cats: ["beleza", "ads"], progress: 78 },
+  { title: "Unboxing de roupas – Temu", id: "h8v-Lkg7GYw", cats: ["moda"], progress: 66 },
+  { title: "Uma peça, sete looks – Shein", id: "msCW92ZLvnU", cats: ["moda"], progress: 90 },
+  { title: "Fit check academia – Dazy", id: "3g3cJjOntMw", cats: ["moda"], progress: 52 },
+  { title: "Acessório Dia dos Pais – Gemany", id: "D1PXnbh-mig", cats: ["moda"], progress: 48 },
+  { title: "Trend de acessórios", id: "hp0bmPDBuFg", cats: ["moda"], progress: 61 },
+  { title: "Trend de acessórios", id: "LmCsCfUcFuc", cats: ["moda"], progress: 59 },
+  { title: "Robô aspirador – ABIR K30", id: "ZYt1VQgzwhg", cats: ["tech"], progress: 57 },
+  { title: "Melhores preços – Decolar", id: "0CGx4KUVYXI", cats: ["tech", "ads"], progress: 85 },
+  { title: "Parceria – iFood e Decolar", id: "jE8p0SM-2Ck", cats: ["tech"], progress: 63 },
+  { title: "Passaporte de pontos – Decolar", id: "DnmtUWxcj-0", cats: ["tech"], progress: 50 },
+  { title: "Promo – Bacio di Latte", id: "PZXHUwaRA58", cats: ["gastronomia", "ads"], progress: 88 },
+  { title: "Receita – LaCreme", id: "Bv-hVPY1w54", cats: ["gastronomia"], progress: 54 },
+  { title: "Gel de unha – Bluwe", id: "kwDV78lrpYU", cats: ["ads"], progress: 69 },
+  { title: "Luminária Cogumelo", id: "udcFJBn_Ycw", cats: ["decor"], progress: 45 },
+  { title: "Kit de Velas – Temu", id: "1BbS9kiljks", cats: ["decor"], progress: 49 },
+  { title: "3 coisas que não podem faltar no banheiro – Coala Home", id: "QffvCfZHFA8", cats: ["decor"], progress: 73 },
+  { title: "Campanha – Coala Home Chá Branco", id: "tN9Ph0Oj8do", cats: ["decor", "ads"], progress: 80 },
+  { title: "Barrinha Proteica – BOLD", id: "gODmi9ct7a0", cats: ["wellness-fit"], progress: 67 },
 ];
 
 // FOTOS — galeria simples migrada do portfólio real (still de produto e still em uso).
@@ -1152,12 +1213,12 @@ function renderVideos(filter){
   const list = filter === 'all' ? VIDEOS : VIDEOS.filter(v => v.cats.includes(filter));
   videoGrid.innerHTML = list.map(v => {
     const catLabels = v.cats.map(k => (CATEGORIES.find(c => c.key === k) || {}).label || k);
+    const url = `https://youtube.com/shorts/${v.id}`;
     return `
-    <article class="vcard reveal in">
+    <a class="vcard reveal in" href="${url}" target="_blank" rel="noopener noreferrer" data-video-id="${v.id}" data-video-title="${v.title}">
       <div class="cover">
         <span class="cat-tag">${catLabels.join(' · ')}</span>
-        <!-- TROCAR POR IMAGEM/VÍDEO REAL: substitua a div.ph por <img> ou <video poster="..."> -->
-        <div class="ph">${v.title}<br><span>capa 4:5</span></div>
+        <img class="cover-img" src="https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${v.id}/hqdefault.jpg';" alt="${v.title}" loading="lazy">
         <div class="play"><span>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--black)"><path d="M8 5v14l11-7z"/></svg>
         </span></div>
@@ -1165,9 +1226,9 @@ function renderVideos(filter){
       </div>
       <div class="meta">
         <h3>${v.title}</h3>
-        <p>#${catLabels[0].replace(/\s+/g,'')}</p>
+        <p>▶ assistir no youtube</p>
       </div>
-    </article>`;
+    </a>`;
   }).join('');
 }
 renderVideos('all');
@@ -1178,6 +1239,13 @@ filtersEl.addEventListener('click', (e) => {
   filtersEl.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   renderVideos(btn.dataset.cat);
+});
+
+// registra o clique em "video_view" quando existir integração de rastreamento (ver js/tracking.js)
+videoGrid.addEventListener('click', (e) => {
+  const card = e.target.closest('.vcard');
+  if(!card || !window.Tracking) return;
+  Tracking.evento('video_view', card.dataset.videoId, { title: card.dataset.videoTitle });
 });
 
 // ---- cards de foto ----
