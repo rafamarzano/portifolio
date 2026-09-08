@@ -535,7 +535,7 @@ section{ position:relative; padding:100px 0 90px; }
    PROCESSO
    ========================================================================== */
 .processo{ background:var(--cream); border-bottom:3px dashed var(--black); }
-.processo-list{ display:flex; flex-direction:column; gap:18px; max-width:820px; margin:0 auto; }
+.processo-list{ display:flex; flex-direction:column; gap:18px; max-width:1040px; margin:0 auto; }
 .processo-item{
   display:flex; align-items:center; gap:22px; background:var(--white);
   border:2.5px solid var(--black); border-radius:999px; padding:18px 30px;
@@ -563,7 +563,7 @@ section{ position:relative; padding:100px 0 90px; }
    ========================================================================== */
 .duvidas{ background:var(--pink-pale); border-bottom:3px dashed var(--black); }
 .chat-window{
-  max-width:760px; margin:0 auto; background:var(--white); border:2.5px solid var(--black);
+  max-width:1040px; margin:0 auto; background:var(--white); border:2.5px solid var(--black);
   box-shadow:var(--shadow-hard); overflow:hidden; transform:rotate(-.6deg);
 }
 .chat-bar{
@@ -737,7 +737,7 @@ section{ position:relative; padding:100px 0 90px; }
       <div class="hero-col-photo">
         <div class="scrap-row single">
           <figure class="polaroid cover-photo">
-            <div class="ph ph-real"><img src="imagens/hero.jpg" alt="Rafaela Marzano"></div>
+            <div class="ph ph-real"><img src="imagens/hero.png" alt="Rafaela Marzano"></div>
             <figcaption>main character energy</figcaption>
           </figure>
         </div>
@@ -829,13 +829,11 @@ section{ position:relative; padding:100px 0 90px; }
               <figcaption>hi, it's me</figcaption>
             </figure>
             <figure class="polaroid">
-              <!-- TROCAR POR IMAGEM REAL -->
-              <div class="ph">bastidores<br><span>3:4</span></div>
+              <div class="ph ph-real"><img src="imagens/sobre-bastidores.jpg" alt="Rafaela Marzano nos bastidores"></div>
               <figcaption>behind the scenes</figcaption>
             </figure>
             <figure class="polaroid">
-              <!-- TROCAR POR IMAGEM REAL -->
-              <div class="ph">nano influ<br><span>3:4</span></div>
+              <div class="ph ph-real"><img src="imagens/sobre-nano-influencer.png" alt="Rafaela Marzano, nano influencer"></div>
               <figcaption>nano influencer life</figcaption>
             </figure>
           </div>
@@ -1145,9 +1143,9 @@ const VIDEOS = [
 // FOTOS — galeria com as fotos reais em imagens/portfolio-fotos/ (já existentes no repositório).
 // "pos" é object-position, pra enquadrar melhor o recorte quadrado do card.
 const PHOTOS = [
-  { caption: "Editorial de look completo", img: "editorial-look.jpg", pos: "center 10%" },
+  { caption: "Odorizante de Ambiente — Coala Home", img: "coala-home-odorizante.jpg", pos: "center 15%" },
   { caption: "Still de produto — máscara de cílios, Essence", img: "essence-still.jpg", pos: "center 52%" },
-  { caption: "Still de acessórios — brincos e anéis", img: "acessorios.jpg", pos: "center 20%" },
+  { caption: "Kit Coala Home Chá Branco", img: "coala-home-kit-cha-branco.png", pos: "center 15%" },
   { caption: "Still de produto — maquiagem", img: "still-maquiagem.jpg", pos: "center" },
   { caption: "Still de produto — protetor solar", img: "protetor-solar.jpg", pos: "center" },
   { caption: "Still de produto — boné", img: "bone.jpg", pos: "center 20%" },
