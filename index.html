@@ -220,6 +220,17 @@ section{ position:relative; padding:100px 0 90px; }
   width:98px; height:98px; text-align:center; font-size:.72rem; line-height:1.15;
   transform:rotate(9deg); flex-direction:column; gap:2px;
 }
+
+.lang-toggle{
+  display:flex; border:2.5px solid var(--black); border-radius:999px; overflow:hidden;
+  box-shadow:var(--shadow-hard-sm); background:var(--white); flex-shrink:0;
+}
+.lang-btn{
+  font-family:var(--f-label); font-size:.78rem; letter-spacing:.05em;
+  padding:8px 14px; background:transparent; color:var(--black);
+  transition:background .2s ease, color .2s ease;
+}
+.lang-btn.active{ background:var(--black); color:var(--pink-pale); }
 .hero-badge b{ font-size:1rem; display:block; }
 
 /* mini-stickers y2k espalhados pelo hero pra preencher o espaço */
@@ -741,6 +752,10 @@ section{ position:relative; padding:100px 0 90px; }
       <div class="hero-col-text">
         <div class="hero-top">
           <span class="hero-handle">@rafamarzano</span>
+          <div class="lang-toggle" role="group" aria-label="Idioma do site">
+            <button type="button" class="lang-btn active" data-lang="pt">PT</button>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+          </div>
           <span class="sticker hero-badge"><b>UGC</b>creator ★</span>
         </div>
 
@@ -754,11 +769,11 @@ section{ position:relative; padding:100px 0 90px; }
         </h1>
 
         <!-- frase real, adaptada do site rafamarzano.online -->
-        <p class="hero-sub">conteúdo que parece indicação de amiga, não propaganda&nbsp;💋</p>
+        <p class="hero-sub" data-i18n="heroSub">conteúdo que parece indicação de amiga, não propaganda&nbsp;💋</p>
 
         <div class="hero-actions">
-          <a class="hero-btn primary" href="#contact">fale comigo</a>
-          <a class="hero-btn outline" href="#videos">ver portfólio</a>
+          <a class="hero-btn primary" href="#contact" data-i18n="ctaPrimary">fale comigo</a>
+          <a class="hero-btn outline" href="#videos" data-i18n="ctaSecondary">ver portfólio</a>
         </div>
         <div class="hero-social">
           <a class="hero-icon" href="https://wa.me/5531983494752" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" data-canal="whatsapp">
@@ -786,10 +801,10 @@ section{ position:relative; padding:100px 0 90px; }
       </div>
     </div>
 
-    <div class="hero-note n1">conteúdo que vende ✨</div>
-    <div class="hero-note n2">roteiriza, grava, entrega 🎬</div>
-    <div class="hero-note n3">it girl da sua marca</div>
-    <div class="hero-note n4">viral by design</div>
+    <div class="hero-note n1" data-i18n="note1">conteúdo que vende ✨</div>
+    <div class="hero-note n2" data-i18n="note2">roteiriza, grava, entrega 🎬</div>
+    <div class="hero-note n3" data-i18n="note3">it girl da sua marca</div>
+    <div class="hero-note n4" data-i18n="note4">viral by design</div>
 
     <!-- mini-stickers y2k pra dar mais textura e preencher o espaço em volta -->
     <span class="sticker hero-mini-badge mb1 float-a" style="background:#c9f2ff; --r:-8deg;"><b>Y2K</b>baby</span>
@@ -798,7 +813,7 @@ section{ position:relative; padding:100px 0 90px; }
     <span class="sticker hero-mini-badge mb4 float-b" style="background:var(--red); color:var(--white);"><b>100%</b>iconic</span>
 
     <div class="scroll-cue">
-      role pra ver mais
+      <span data-i18n="scrollCue">role pra ver mais</span>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
     </div>
   </div>
@@ -856,10 +871,10 @@ section{ position:relative; padding:100px 0 90px; }
   <svg class="doodle doodle-interactive spin-slow" style="top:44%;right:1%" width="20" height="20" viewBox="0 0 24 24"><polygon points="12,2 20,9 12,22 4,9" fill="var(--pink)" stroke="var(--black)" stroke-width="1"/></svg>
   <div class="wrap">
     <div class="diary reveal">
-      <span class="about-kicker">diário da creator · pg. 01</span>
-      <h2 class="about-title">sobre mim</h2>
+      <span class="about-kicker" data-i18n="aboutKicker">diário da creator · pg. 01</span>
+      <h2 class="about-title" data-i18n="aboutTitle">sobre mim</h2>
       <div class="about-body">
-        <div class="about-text">
+        <div class="about-text" id="aboutText">
           <p><span class="cap">S</span>ou a Rafaela, criadora de conteúdo UGC de Belo Horizonte, e além de UGC também sou nano influencer, então sei como é estar dos dois lados da tela. Meu trabalho começa antes da câmera ligar: entender o produto, a marca e a pessoa que vai assistir ao vídeo do outro lado. <mark>Conteúdo que parece indicação de amiga</mark>, não propaganda, é essa a ideia.</p>
           <p>Antes de criar conteúdo, me formei em Direito e trabalhei em banco, foi ali que ganhei o profissionalismo pra lidar com qualquer situação e qualquer público. Hoje, além de UGC e nano influência, também atuo como nail designer, e foi na prática que aprendi que um trabalho bom precisa ser bem retratado pra gerar desejo.</p>
           <p>Foi assim que desenvolvi meu olhar pra luz, ângulo, enquadramento e edição, cuidando de cada detalhe até a imagem comunicar o valor real do que está ali. <mark>O que eu mais prezo é a confiança</mark>: quando sua marca aparecer ao meu lado, ela aparece de um jeito verdadeiro.</p>
@@ -867,30 +882,29 @@ section{ position:relative; padding:100px 0 90px; }
         <div class="about-side">
           <div class="photo-stack">
             <figure class="polaroid">
-              <div class="ph ph-real"><img src="imagens/sobre.png" alt="Rafaela Marzano"></div>
-              <figcaption>hi, it's me</figcaption>
+              <div class="ph ph-real"><img src="imagens/sobre-bastidores.jpg" alt="Rafaela Marzano nos bastidores"></div>
             </figure>
             <figure class="polaroid">
-              <div class="ph ph-real"><img src="imagens/sobre-bastidores.jpg" alt="Rafaela Marzano nos bastidores"></div>
-              <figcaption>behind the scenes</figcaption>
+              <div class="ph ph-real"><img src="imagens/sobre.png" alt="Rafaela Marzano"></div>
+              <figcaption>hi, it's me</figcaption>
             </figure>
             <figure class="polaroid">
               <div class="ph ph-real"><img src="imagens/sobre-nano-influencer.png" alt="Rafaela Marzano, nano influencer"></div>
               <figcaption>hi, it's me ;)</figcaption>
             </figure>
           </div>
-          <div class="postit">bilhete: "Nano influencer e UGC creator. Conteúdo que funciona de verdade." ✨</div>
+          <div class="postit" data-i18n="aboutPostit">bilhete: "Nano influencer e UGC creator. Conteúdo que funciona de verdade." ✨</div>
         </div>
       </div>
       <div class="about-tags">
-        <span>#ugc creator</span><span>#nano influencer</span><span>#conteúdo que converte</span><span>#creator autêntica</span>
+        <span data-i18n="tag1">#ugc creator</span><span data-i18n="tag2">#nano influencer</span><span data-i18n="tag3">#conteúdo que converte</span><span data-i18n="tag4">#creator autêntica</span>
       </div>
     </div>
 
     <div class="stat-strip reveal">
-      <div class="stat"><b>26</b><span>anos</span></div>
-      <div class="stat"><b>BH</b><span>belo horizonte/mg</span></div>
-      <div class="stat"><b>Direito</b><span>formação, 2022</span></div>
+      <div class="stat"><b>26</b><span data-i18n="statYears">anos</span></div>
+      <div class="stat"><b>BH</b><span data-i18n="statCity">belo horizonte/mg</span></div>
+      <div class="stat"><b data-i18n="statDegree">Direito</b><span data-i18n="statDegreeYear">formação, 2022</span></div>
     </div>
     <!-- [EDITAR] troque por métricas de audiência (seguidores, alcance, engajamento)
          quando fizer sentido divulgar — hoje o site real usa destaques pessoais. -->
@@ -901,7 +915,7 @@ section{ position:relative; padding:100px 0 90px; }
      TICKER DE MARCAS — rola antes da seção de vídeos
      ========================================================================== -->
 <div class="brand-ticker-wrap reveal">
-  <p class="brand-ticker-label">marcas que já confiaram no meu conteúdo</p>
+  <p class="brand-ticker-label" data-i18n="brandTickerLabel">marcas que já confiaram no meu conteúdo</p>
   <div class="brand-ticker" aria-hidden="true">
     <div class="brand-ticker-track" id="brandTickerTrack"></div>
   </div>
@@ -922,8 +936,8 @@ section{ position:relative; padding:100px 0 90px; }
   <svg class="doodle doodle-interactive spin-slow" style="top:50%;right:3%" width="18" height="18" viewBox="0 0 24 24" fill="var(--pink)" stroke="var(--black)" stroke-width="1"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4l-6.3 4.4L8 13.6 2 9.2h7.6z"/></svg>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-kicker">vídeos que já bombaram</span>
-      <h2 class="sec-title">vídeos <span class="hl">icônicos</span></h2>
+      <span class="sec-kicker" data-i18n="videosKicker">vídeos que já bombaram</span>
+      <h2 class="sec-title" data-i18n-html="videosTitle">vídeos <span class="hl">icônicos</span></h2>
       <div class="sec-underline"></div>
     </div>
 
@@ -953,8 +967,8 @@ section{ position:relative; padding:100px 0 90px; }
   <svg class="doodle doodle-interactive spin-slow" style="top:12%;right:22%" width="18" height="18" viewBox="0 0 24 24" fill="#c9f2ff" stroke="var(--black)" stroke-width="1"><polygon points="12,2 20,9 12,22 4,9"/></svg>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-kicker">still de produto e still em uso</span>
-      <h2 class="sec-title">fotos <span class="hl">que já produzi</span></h2>
+      <span class="sec-kicker" data-i18n="photosKicker">still de produto e still em uso</span>
+      <h2 class="sec-title" data-i18n-html="photosTitle">fotos <span class="hl">que já produzi</span></h2>
       <div class="sec-underline"></div>
     </div>
 
@@ -976,8 +990,8 @@ section{ position:relative; padding:100px 0 90px; }
   </svg>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-kicker">o que eu entrego</span>
-      <h2 class="sec-title">serviços <span class="hl">que convertem</span></h2>
+      <span class="sec-kicker" data-i18n="servicesKicker">o que eu entrego</span>
+      <h2 class="sec-title" data-i18n-html="servicesTitle">serviços <span class="hl">que convertem</span></h2>
       <div class="sec-underline"></div>
     </div>
 
@@ -1001,8 +1015,8 @@ section{ position:relative; padding:100px 0 90px; }
   </svg>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-kicker">como funciona</span>
-      <h2 class="sec-title">o processo <span class="hl">ugc</span></h2>
+      <span class="sec-kicker" data-i18n="processoKicker">como funciona</span>
+      <h2 class="sec-title" data-i18n-html="processoTitle">o processo <span class="hl">ugc</span></h2>
       <div class="sec-underline"></div>
     </div>
 
@@ -1024,8 +1038,8 @@ section{ position:relative; padding:100px 0 90px; }
   </svg>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-kicker">tira dúvidas</span>
-      <h2 class="sec-title">principais <span class="hl">dúvidas</span></h2>
+      <span class="sec-kicker" data-i18n="duvidasKicker">tira dúvidas</span>
+      <h2 class="sec-title" data-i18n-html="duvidasTitle">principais <span class="hl">dúvidas</span></h2>
       <div class="sec-underline"></div>
     </div>
 
@@ -1054,8 +1068,8 @@ section{ position:relative; padding:100px 0 90px; }
   <svg class="doodle doodle-interactive spin-slow" style="top:40%;left:4%" width="18" height="18" viewBox="0 0 24 24" fill="var(--white)" stroke="var(--pink-hot)" stroke-width="1"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4l-6.3 4.4L8 13.6 2 9.2h7.6z"/></svg>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-kicker" style="color:var(--pink-hot)">última página da revista</span>
-      <h2 class="sec-title">bora criar <span class="hl">juntas?</span></h2>
+      <span class="sec-kicker" style="color:var(--pink-hot)" data-i18n="contactKicker">última página da revista</span>
+      <h2 class="sec-title" data-i18n-html="contactTitle">bora criar <span class="hl">juntas?</span></h2>
       <div class="sec-underline"></div>
     </div>
 
@@ -1081,21 +1095,21 @@ section{ position:relative; padding:100px 0 90px; }
             contato@rafamarzano.online
           </a>
         </div>
-        <p class="contact-note">ps: sua marca merece conteúdo que para o scroll. bora bater um papo? 💌</p>
+        <p class="contact-note" data-i18n="contactPs">ps: sua marca merece conteúdo que para o scroll. bora bater um papo? 💌</p>
       </div>
 
       <form class="form reveal" id="mainForm">
-        <h3>fala comigo!</h3>
-        <div class="field"><label for="mf-nome">nome</label><input id="mf-nome" name="nome" type="text" required placeholder="seu nome"></div>
-        <div class="field"><label for="mf-empresa">empresa</label><input id="mf-empresa" name="empresa" type="text" placeholder="nome da marca"></div>
-        <div class="field"><label for="mf-email">email</label><input id="mf-email" name="email" type="email" required placeholder="voce@marca.com"></div>
-        <div class="field"><label for="mf-whats">whatsapp</label><input id="mf-whats" name="whatsapp" type="tel" placeholder="(00) 00000-0000"></div>
-        <div class="field"><label for="mf-brief">briefing</label><textarea id="mf-brief" name="briefing" rows="4" placeholder="conta um pouco sobre o projeto..."></textarea></div>
-        <button class="submit-btn" type="submit">enviar e criar algo icônico</button>
-        <p class="form-success" id="mainFormSuccess">recebido! 💌 em breve eu te chamo.</p>
+        <h3 data-i18n="formTitle">fala comigo!</h3>
+        <div class="field"><label for="mf-nome" data-i18n="formLabelName">nome</label><input id="mf-nome" name="nome" type="text" required data-i18n-placeholder="formPlaceholderName" placeholder="seu nome"></div>
+        <div class="field"><label for="mf-empresa" data-i18n="formLabelBrand">empresa</label><input id="mf-empresa" name="empresa" type="text" data-i18n-placeholder="formPlaceholderBrand" placeholder="nome da marca"></div>
+        <div class="field"><label for="mf-email" data-i18n="formLabelEmail">email</label><input id="mf-email" name="email" type="email" required data-i18n-placeholder="formPlaceholderEmail" placeholder="voce@marca.com"></div>
+        <div class="field"><label for="mf-whats" data-i18n="formLabelWhats">whatsapp</label><input id="mf-whats" name="whatsapp" type="tel" data-i18n-placeholder="formPlaceholderWhats" placeholder="(00) 00000-0000"></div>
+        <div class="field"><label for="mf-brief" data-i18n="formLabelBrief">briefing</label><textarea id="mf-brief" name="briefing" rows="4" data-i18n-placeholder="formPlaceholderBrief" placeholder="conta um pouco sobre o projeto..."></textarea></div>
+        <button class="submit-btn" type="submit" data-i18n="formSubmit">enviar e criar algo icônico</button>
+        <p class="form-success" id="mainFormSuccess" data-i18n="formSuccess">recebido! 💌 em breve eu te chamo.</p>
         <!-- Envia o lead pro Supabase (mesma tabela portfolio_leads do painel.html),
              via window.Tracking.lead(), definido em js/tracking.js. -->
-        <p class="form-note">seus dados vão direto pro painel da Rafa 💌</p>
+        <p class="form-note" data-i18n="formNote">seus dados vão direto pro painel da Rafa 💌</p>
       </form>
     </div>
   </div>
@@ -1116,13 +1130,13 @@ section{ position:relative; padding:100px 0 90px; }
      ========================================================================== -->
 <nav class="dock" aria-label="Navegação do portfólio">
   <div class="dock-inner">
-    <a class="dock-tab" href="#about" data-target="about">sobre mim</a>
-    <a class="dock-tab" href="#videos" data-target="videos">vídeos</a>
-    <a class="dock-tab" href="#photos" data-target="photos">fotos</a>
-    <a class="dock-tab" href="#services" data-target="services">serviços</a>
-    <a class="dock-tab" href="#processo" data-target="processo">processo</a>
-    <a class="dock-tab" href="#duvidas" data-target="duvidas">dúvidas</a>
-    <a class="dock-tab" href="#contact" data-target="contact">contato</a>
+    <a class="dock-tab" href="#about" data-target="about" data-i18n="navAbout">sobre mim</a>
+    <a class="dock-tab" href="#videos" data-target="videos" data-i18n="navVideos">vídeos</a>
+    <a class="dock-tab" href="#photos" data-target="photos" data-i18n="navPhotos">fotos</a>
+    <a class="dock-tab" href="#services" data-target="services" data-i18n="navServices">serviços</a>
+    <a class="dock-tab" href="#processo" data-target="processo" data-i18n="navProcesso">processo</a>
+    <a class="dock-tab" href="#duvidas" data-target="duvidas" data-i18n="navDuvidas">dúvidas</a>
+    <a class="dock-tab" href="#contact" data-target="contact" data-i18n="navContact">contato</a>
   </div>
 </nav>
 
@@ -1135,10 +1149,10 @@ section{ position:relative; padding:100px 0 90px; }
    ============================================================================ */
 
 // TICKER — frases que rolam no topo
-const TICKER_PHRASES = [
-  "cool girls create", "viral content", "main character creator",
-  "your brand's next obsession", "ugc that sells"
-];
+const TICKER_PHRASES = {
+  pt: ["cool girls create", "viral content", "main character creator", "your brand's next obsession", "ugc that sells"],
+  en: ["cool girls create", "viral content", "main character creator", "your brand's next obsession", "ugc that sells"],
+};
 
 // MARCAS TRABALHADAS — ticker rolante antes da seção de vídeos.
 // [EDITAR] lista confirmada pela Rafa: só as marcas reais que já confiaram no trabalho.
@@ -1150,13 +1164,13 @@ const BRANDS = [
 // "cats" é uma lista (um vídeo pode estar em mais de uma linha, ex. ads).
 // A ordem aqui é a ordem das linhas na seção de vídeos (ads fica na 3ª linha).
 const CATEGORIES = [
-  { key: "beleza", label: "beleza", sub: "produtos que viram ritual de beleza" },
-  { key: "moda", label: "moda e acessórios", sub: "looks e achadinhos que dão vontade de comprar" },
-  { key: "ads", label: "ads", sub: "conteúdo pensado pra performar como anúncio" },
-  { key: "tech", label: "tech", sub: "tecnologia que resolve o dia a dia" },
-  { key: "gastronomia", label: "gastronomia", sub: "receitas e sabores que dão água na boca" },
-  { key: "decor", label: "home/decor", sub: "ambientes que inspiram" },
-  { key: "wellness-fit", label: "wellness/fit", sub: "rotina saudável sem parecer chato" },
+  { key: "beleza", labelPt: "beleza", labelEn: "beauty", subPt: "produtos que viram ritual de beleza", subEn: "products that become a beauty ritual" },
+  { key: "moda", labelPt: "moda e acessórios", labelEn: "fashion & accessories", subPt: "outfits que dão vontade de comprar", subEn: "outfits that make you want to shop" },
+  { key: "ads", labelPt: "ads", labelEn: "ads", subPt: "conteúdo pensado pra performar como anúncio", subEn: "content designed to perform as an ad" },
+  { key: "tech", labelPt: "tech", labelEn: "tech", subPt: "apps e tech em linguagem humana", subEn: "apps and tech in human language" },
+  { key: "gastronomia", labelPt: "gastronomia", labelEn: "food", subPt: "receitas e sabores que dão água na boca", subEn: "recipes and flavors that make your mouth water" },
+  { key: "decor", labelPt: "home/decor", labelEn: "home/decor", subPt: "ambientes que inspiram", subEn: "spaces that inspire" },
+  { key: "wellness-fit", labelPt: "wellness/fit", labelEn: "wellness/fit", subPt: "rotina saudável sem parecer chato", subEn: "healthy routine that doesn't feel boring" },
 ];
 
 // Vídeos reais do portfólio (rafamarzano.online) — "id" é o ID do vídeo no
@@ -1211,43 +1225,60 @@ const PHOTOS = [
 
 // SERVIÇOS — pacotes reais oferecidos hoje (rafamarzano.online).
 const SERVICES = [
-  { n: "01", title: "Vídeo UGC", desc: "vídeo estilo depoimento espontâneo, gravado com seu produto — roteiro focado em problema, solução e chamada para ação.", tag: "até 60s" },
-  { n: "02", title: "Reels e TikTok", desc: "conteúdo curto e dinâmico pra prender nos primeiros segundos, com cortes ritmados, trilha e legendas embutidas.", tag: "formato 9:16" },
-  { n: "03", title: "Fotos de Produto", desc: "imagens com cara de vida real pro feed, site e anúncios — luz natural, cenário cuidado, produto sempre protagonista.", tag: "still + still em uso" },
-  { n: "04", title: "Unboxing", desc: "a experiência de abrir sua embalagem, filmada com cuidado no detalhe — o conteúdo que mais gera desejo e curiosidade.", tag: "vídeo + cortes" },
-  { n: "05", title: "Conteúdo para Ads", desc: "vídeo pensado desde o roteiro pra performar como anúncio no tráfego pago, com gancho forte e foco em conversão.", tag: "pensado pra ads" },
-  { n: "06", title: "Conteúdo Recorrente", desc: "pacotes mensais pra manter seu feed sempre vivo, com constância e planejamento em vez de conteúdo solto.", tag: "entrega mensal" },
+  { n: "01", titlePt: "Vídeo UGC", titleEn: "UGC Video", descPt: "vídeo estilo depoimento espontâneo, gravado com seu produto — roteiro focado em problema, solução e chamada para ação.", descEn: "spontaneous testimonial-style video, filmed with your product — script focused on problem, solution and call to action.", tagPt: "até 60s", tagEn: "up to 60s" },
+  { n: "02", titlePt: "Reels e TikTok", titleEn: "Reels & TikTok", descPt: "conteúdo curto e dinâmico pra prender nos primeiros segundos, com cortes ritmados, trilha e legendas embutidas.", descEn: "short, dynamic content to hook viewers in the first seconds, with rhythmic cuts, music and embedded captions.", tagPt: "formato 9:16", tagEn: "9:16 format" },
+  { n: "03", titlePt: "Fotos de Produto", titleEn: "Product Photos", descPt: "imagens com cara de vida real pro feed, site e anúncios — luz natural, cenário cuidado, produto sempre protagonista.", descEn: "real-life-feel images for your feed, site and ads — natural light, curated setting, product always the star.", tagPt: "still + still em uso", tagEn: "still + lifestyle" },
+  { n: "04", titlePt: "Unboxing", titleEn: "Unboxing", descPt: "a experiência de abrir sua embalagem, filmada com cuidado no detalhe — o conteúdo que mais gera desejo e curiosidade.", descEn: "the experience of opening your packaging, filmed with careful attention to detail — the content that sparks the most desire and curiosity.", tagPt: "vídeo + cortes", tagEn: "video + cutaways" },
+  { n: "05", titlePt: "Conteúdo para Ads", titleEn: "Content for Ads", descPt: "vídeo pensado desde o roteiro pra performar como anúncio no tráfego pago, com gancho forte e foco em conversão.", descEn: "video designed from the script to perform as a paid ad, with a strong hook and focus on conversion.", tagPt: "pensado pra ads", tagEn: "built for ads" },
+  { n: "06", titlePt: "Conteúdo Recorrente", titleEn: "Recurring Content", descPt: "pacotes mensais pra manter seu feed sempre vivo, com constância e planejamento em vez de conteúdo solto.", descEn: "monthly packages to keep your feed always alive, with consistency and planning instead of one-off content.", tagPt: "entrega mensal", tagEn: "monthly delivery" },
 ];
 
 // PROCESSO — passo a passo real, do briefing à aprovação final.
 const PROCESSO = [
-  { title: "analiso o briefing da marca", desc: "pra entender seus objetivos, público-alvo e expectativas pro conteúdo." },
-  { title: "roteirização", desc: "desenvolvo um roteiro claro e estratégico, destacando os principais benefícios do produto." },
-  { title: "gravação + edição", desc: "foco em captar a essência do produto de um jeito que gera identificação com o público." },
-  { title: "aprovação", desc: "entrego o vídeo final dentro do prazo — de 7 a 10 dias úteis, podendo chegar a 20 conforme a complexidade e a quantidade de vídeos." },
+  { titlePt: "analiso o briefing da marca", titleEn: "I review the brand's briefing", descPt: "pra entender seus objetivos, público-alvo e expectativas pro conteúdo.", descEn: "to understand your goals, target audience and expectations for the content." },
+  { titlePt: "roteirização", titleEn: "scripting", descPt: "desenvolvo um roteiro claro e estratégico, destacando os principais benefícios do produto.", descEn: "I develop a clear, strategic script, highlighting the product's key benefits." },
+  { titlePt: "gravação + edição", titleEn: "filming + editing", descPt: "foco em captar a essência do produto de um jeito que gera identificação com o público.", descEn: "I focus on capturing the product's essence in a way that connects with the audience." },
+  { titlePt: "aprovação", titleEn: "approval", descPt: "entrego o vídeo final dentro do prazo — de 7 a 10 dias úteis, podendo chegar a 20 conforme a complexidade e a quantidade de vídeos.", descEn: "I deliver the final video within the agreed deadline — 7 to 10 business days, up to 20 depending on complexity and number of videos." },
 ];
 
 // DÚVIDAS — perguntas frequentes em formato de chat.
 const FAQ = [
-  { q: "Como funciona o envio do produto e do briefing?", a: "Você me envia o produto e um briefing com os pontos principais — tom, benefícios e referências. A partir disso eu monto o roteiro e alinho com você antes de gravar." },
-  { q: "Você faz edição, ou eu recebo o material bruto?", a: "A edição está inclusa nos pacotes com entrega final, então você recebe o vídeo pronto pra postar." },
-  { q: "Posso usar os vídeos em anúncios pagos (Meta Ads / TikTok Ads)?", a: "Sim! Os vídeos de UGC já são pensados pra performar como anúncio. Os direitos de uso são combinados previamente, conforme o pacote escolhido." },
+  { qPt: "Como funciona o envio do produto e do briefing?", qEn: "How does sending the product and briefing work?", aPt: "Você me envia o produto e um briefing com os pontos principais — tom, benefícios e referências. A partir disso eu monto o roteiro e alinho com você antes de gravar.", aEn: "You send me the product and a briefing with the key points — tone, benefits and references. From there I build the script and align it with you before filming." },
+  { qPt: "Você faz edição, ou eu recebo o material bruto?", qEn: "Do you edit the videos, or do I get the raw footage?", aPt: "A edição está inclusa nos pacotes com entrega final, então você recebe o vídeo pronto pra postar.", aEn: "Editing is included in packages with final delivery, so you receive the video ready to post." },
+  { qPt: "Posso usar os vídeos em anúncios pagos (Meta Ads / TikTok Ads)?", qEn: "Can I use the videos in paid ads (Meta Ads / TikTok Ads)?", aPt: "Sim! Os vídeos de UGC já são pensados pra performar como anúncio. Os direitos de uso são combinados previamente, conforme o pacote escolhido.", aEn: "Yes! UGC videos are already designed to perform as ads. Usage rights are agreed on beforehand, according to the chosen package." },
 ];
 
 /* ============================================================================
    RENDERIZAÇÃO
    ============================================================================ */
 
+// ---- scroll reveal (definido cedo pra poder ser reusado após trocar de idioma) ----
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+function observeReveals(){
+  document.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
+}
+
+// ---- idioma atual (pt/en) e helper de tradução inline ----
+let idiomaAtual = 'pt';
+function L(pt, en){ return idiomaAtual === 'pt' ? pt : en; }
+
 // ---- ticker do topo (duplica a lista pra loop infinito sem "salto") ----
-(function renderTicker(){
+function renderTickerTrack(){
   const track = document.getElementById('tickerTrack');
-  const build = () => TICKER_PHRASES.map((p,i) =>
+  const build = () => TICKER_PHRASES[idiomaAtual].map((p,i) =>
     `<span class="${i%2===0?'':'pink'}">★ ${p}</span>`
   ).join('');
   track.innerHTML = build() + build();
-})();
+}
 
-// ---- ticker de marcas trabalhadas (antes da seção de vídeos) ----
+// ---- ticker de marcas trabalhadas (antes da seção de vídeos) — nomes de marca não traduzem ----
 (function renderBrandTicker(){
   const track = document.getElementById('brandTickerTrack');
   const build = () => BRANDS.map(b => `<span>${b}</span>`).join('');
@@ -1257,15 +1288,19 @@ const FAQ = [
 // ---- vídeos: uma linha por categoria (ver print de referência), com preview
 //      silencioso no hover e reprodução dentro da própria página (lightbox) ----
 const videoRowsEl = document.getElementById('videoRows');
+const catNavPillsEl = document.getElementById('catNavPills');
 
 function videoCardHtml(v){
-  const catLabels = v.cats.map(k => (CATEGORIES.find(c => c.key === k) || {}).label || k);
+  const catLabels = v.cats.map(k => {
+    const c = CATEGORIES.find(c => c.key === k);
+    return c ? L(c.labelPt, c.labelEn) : k;
+  });
   // usa a capa local (imagens/portfolio-videos/) quando existir; senão, a thumbnail do youtube
   const coverImg = v.capa
     ? `<img class="cover-img" src="imagens/portfolio-videos/${v.capa}" alt="${v.title}" loading="lazy">`
     : `<img class="cover-img" src="https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${v.id}/hqdefault.jpg';" alt="${v.title}" loading="lazy">`;
   return `
-    <div class="vcard reveal in" tabindex="0" role="button" aria-label="Assistir: ${v.title}" data-video-id="${v.id}" data-video-title="${v.title}">
+    <div class="vcard reveal in" tabindex="0" role="button" aria-label="${L('Assistir','Watch')}: ${v.title}" data-video-id="${v.id}" data-video-title="${v.title}">
       <div class="cover">
         <span class="cat-tag">${catLabels.join(' · ')}</span>
         ${coverImg}
@@ -1276,70 +1311,74 @@ function videoCardHtml(v){
       </div>
       <div class="meta">
         <h3>${v.title}</h3>
-        <p>▶ assistir aqui</p>
+        <p>${L('▶ assistir aqui', '▶ watch here')}</p>
       </div>
     </div>`;
 }
 
-const catsComVideo = CATEGORIES.filter(cat => VIDEOS.some(v => v.cats.includes(cat.key)));
+function renderVideosSection(){
+  const catsComVideo = CATEGORIES.filter(cat => VIDEOS.some(v => v.cats.includes(cat.key)));
 
-// menuzinho de pílulas: rola suavemente até a linha da categoria clicada
-document.getElementById('catNavPills').innerHTML = catsComVideo.map(cat =>
-  `<button class="cat-nav-pill" data-goto="cat-row-${cat.key}">${cat.label}</button>`
-).join('');
-document.getElementById('catNavPills').addEventListener('click', (e) => {
-  const btn = e.target.closest('.cat-nav-pill');
-  if(!btn) return;
-  const el = document.getElementById(btn.dataset.goto);
-  if(el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
+  // menuzinho de pílulas: rola suavemente até a linha da categoria clicada
+  catNavPillsEl.innerHTML = catsComVideo.map(cat =>
+    `<button class="cat-nav-pill" data-goto="cat-row-${cat.key}">${L(cat.labelPt, cat.labelEn)}</button>`
+  ).join('');
+  catNavPillsEl.onclick = (e) => {
+    const btn = e.target.closest('.cat-nav-pill');
+    if(!btn) return;
+    const el = document.getElementById(btn.dataset.goto);
+    if(el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
-videoRowsEl.innerHTML = catsComVideo.map(cat => {
-  const vids = VIDEOS.filter(v => v.cats.includes(cat.key));
-  return `
-  <div class="cat-row" id="cat-row-${cat.key}">
-    <div class="cat-row-head">
-      <div>
-        <h3 class="cat-row-title">${cat.label} <span class="cat-row-count">${vids.length}</span></h3>
-        <p class="cat-row-sub">${cat.sub || ''}</p>
+  videoRowsEl.innerHTML = catsComVideo.map(cat => {
+    const vids = VIDEOS.filter(v => v.cats.includes(cat.key));
+    return `
+    <div class="cat-row" id="cat-row-${cat.key}">
+      <div class="cat-row-head">
+        <div>
+          <h3 class="cat-row-title">${L(cat.labelPt, cat.labelEn)} <span class="cat-row-count">${vids.length}</span></h3>
+          <p class="cat-row-sub">${L(cat.subPt, cat.subEn) || ''}</p>
+        </div>
+        <div class="cat-row-nav">
+          <button class="cat-nav-btn cat-nav-prev" aria-label="${L('voltar','previous')}">‹</button>
+          <button class="cat-nav-btn cat-nav-next" aria-label="${L('avançar','next')}">›</button>
+        </div>
       </div>
-      <div class="cat-row-nav">
-        <button class="cat-nav-btn cat-nav-prev" aria-label="voltar">‹</button>
-        <button class="cat-nav-btn cat-nav-next" aria-label="avançar">›</button>
-      </div>
-    </div>
-    <div class="cat-row-scroll">${vids.map(videoCardHtml).join('')}</div>
-  </div>`;
-}).join('');
+      <div class="cat-row-scroll">${vids.map(videoCardHtml).join('')}</div>
+    </div>`;
+  }).join('');
 
-// setas de navegação horizontal de cada linha
-videoRowsEl.querySelectorAll('.cat-row').forEach(row => {
-  const scroller = row.querySelector('.cat-row-scroll');
-  row.querySelector('.cat-nav-prev').addEventListener('click', () => scroller.scrollBy({ left: -420, behavior: 'smooth' }));
-  row.querySelector('.cat-nav-next').addEventListener('click', () => scroller.scrollBy({ left: 420, behavior: 'smooth' }));
-});
+  // setas de navegação horizontal de cada linha
+  videoRowsEl.querySelectorAll('.cat-row').forEach(row => {
+    const scroller = row.querySelector('.cat-row-scroll');
+    row.querySelector('.cat-nav-prev').addEventListener('click', () => scroller.scrollBy({ left: -420, behavior: 'smooth' }));
+    row.querySelector('.cat-nav-next').addEventListener('click', () => scroller.scrollBy({ left: 420, behavior: 'smooth' }));
+  });
 
-// hover: preview silencioso (autoplay + mute) direto no card; sai ao tirar o mouse
-videoRowsEl.querySelectorAll('.vcard').forEach(card => {
-  const id = card.dataset.videoId;
-  const cover = card.querySelector('.cover');
-  card.addEventListener('mouseenter', () => {
-    if(cover.querySelector('.preview-frame')) return;
-    const frame = document.createElement('iframe');
-    frame.className = 'preview-frame';
-    frame.src = `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&playsinline=1&modestbranding=1&rel=0`;
-    frame.setAttribute('allow', 'autoplay; encrypted-media');
-    frame.setAttribute('frameborder', '0');
-    cover.appendChild(frame);
+  // hover: preview silencioso (autoplay + mute) direto no card; sai ao tirar o mouse
+  videoRowsEl.querySelectorAll('.vcard').forEach(card => {
+    const id = card.dataset.videoId;
+    const cover = card.querySelector('.cover');
+    card.addEventListener('mouseenter', () => {
+      if(cover.querySelector('.preview-frame')) return;
+      const frame = document.createElement('iframe');
+      frame.className = 'preview-frame';
+      frame.src = `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&playsinline=1&modestbranding=1&rel=0`;
+      frame.setAttribute('allow', 'autoplay; encrypted-media');
+      frame.setAttribute('frameborder', '0');
+      cover.appendChild(frame);
+    });
+    card.addEventListener('mouseleave', () => {
+      const frame = cover.querySelector('.preview-frame');
+      if(frame) frame.remove();
+    });
+    const abrir = () => openVideoLightbox(id, card.dataset.videoTitle);
+    card.addEventListener('click', abrir);
+    card.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); abrir(); } });
   });
-  card.addEventListener('mouseleave', () => {
-    const frame = cover.querySelector('.preview-frame');
-    if(frame) frame.remove();
-  });
-  const abrir = () => openVideoLightbox(id, card.dataset.videoTitle);
-  card.addEventListener('click', abrir);
-  card.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); abrir(); } });
-});
+
+  observeReveals();
+}
 
 // lightbox: clique no card reproduz o vídeo (com som) dentro da própria página, sem sair pro youtube
 const videoLightbox = document.getElementById('videoLightbox');
@@ -1357,7 +1396,7 @@ function closeVideoLightbox(){
 videoLightboxClose.addEventListener('click', closeVideoLightbox);
 videoLightbox.addEventListener('click', (e) => { if(e.target === videoLightbox) closeVideoLightbox(); });
 
-// ---- cards de foto ----
+// ---- cards de foto (legendas não traduzem — descrições curtas de produto) ----
 const photoGrid = document.getElementById('photoGrid');
 photoGrid.innerHTML = PHOTOS.map(p => `
   <figure class="pcard reveal in">
@@ -1368,55 +1407,155 @@ photoGrid.innerHTML = PHOTOS.map(p => `
 
 // ---- serviços ----
 const servGrid = document.getElementById('servGrid');
-servGrid.innerHTML = SERVICES.map(s => `
-  <div class="serv-card reveal">
-    <span class="serv-page">pg. ${s.n}</span>
-    <div class="serv-icon">
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--pink-hot)" stroke-width="2"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4l-6.3 4.4L8 13.6 2 9.2h7.6z"/></svg>
+function renderServices(){
+  servGrid.innerHTML = SERVICES.map(s => `
+    <div class="serv-card reveal">
+      <span class="serv-page">pg. ${s.n}</span>
+      <div class="serv-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--pink-hot)" stroke-width="2"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4l-6.3 4.4L8 13.6 2 9.2h7.6z"/></svg>
+      </div>
+      <h3>${L(s.titlePt, s.titleEn)}</h3>
+      <p>${L(s.descPt, s.descEn)}</p>
+      ${s.tagPt ? `<span class="serv-tag">${L(s.tagPt, s.tagEn)}</span>` : ''}
     </div>
-    <h3>${s.title}</h3>
-    <p>${s.desc}</p>
-    ${s.tag ? `<span class="serv-tag">${s.tag}</span>` : ''}
-  </div>
-`).join('');
+  `).join('');
+  observeReveals();
+}
 
 // ---- processo (passo a passo) ----
 const processoList = document.getElementById('processoList');
-processoList.innerHTML = PROCESSO.map((p, i) => `
-  <div class="processo-item reveal">
-    <span class="processo-num">${i + 1}</span>
-    <p class="processo-text"><strong>${p.title}</strong>${p.desc}</p>
-  </div>
-`).join('');
+function renderProcesso(){
+  processoList.innerHTML = PROCESSO.map((p, i) => `
+    <div class="processo-item reveal">
+      <span class="processo-num">${i + 1}</span>
+      <p class="processo-text"><strong>${L(p.titlePt, p.titleEn)}</strong>${L(p.descPt, p.descEn)}</p>
+    </div>
+  `).join('');
+  observeReveals();
+}
 
 // ---- dúvidas (chat de faq) ----
 const chatBody = document.getElementById('chatBody');
-chatBody.innerHTML = FAQ.map(item => `
-  <div class="chat-msg q reveal">
-    <span class="chat-who">você</span>
-    <div class="chat-bubble">${item.q}</div>
-  </div>
-  <div class="chat-msg a reveal">
-    <span class="chat-who">rafa responde</span>
-    <div class="chat-bubble">${item.a}</div>
-  </div>
-`).join('');
+function renderFaq(){
+  chatBody.innerHTML = FAQ.map(item => `
+    <div class="chat-msg q reveal">
+      <span class="chat-who">${L('você', 'you')}</span>
+      <div class="chat-bubble">${L(item.qPt, item.qEn)}</div>
+    </div>
+    <div class="chat-msg a reveal">
+      <span class="chat-who">${L('rafa responde', 'rafa answers')}</span>
+      <div class="chat-bubble">${L(item.aPt, item.aEn)}</div>
+    </div>
+  `).join('');
+  observeReveals();
+}
+
+// ---- textos estáticos (tudo com data-i18n / data-i18n-html / data-i18n-placeholder) ----
+const TEXTOS = {
+  heroSub: { pt: "conteúdo que parece indicação de amiga, não propaganda&nbsp;💋", en: "content that feels like a friend's recommendation, not an ad&nbsp;💋" },
+  ctaPrimary: { pt: "fale comigo", en: "get in touch" },
+  ctaSecondary: { pt: "ver portfólio", en: "see portfolio" },
+  note1: { pt: "conteúdo que vende ✨", en: "content that sells ✨" },
+  note2: { pt: "roteiriza, grava, entrega 🎬", en: "script, film, deliver 🎬" },
+  note3: { pt: "it girl da sua marca", en: "your brand's it girl" },
+  note4: { pt: "viral by design", en: "viral by design" },
+  scrollCue: { pt: "role pra ver mais", en: "scroll for more" },
+  aboutKicker: { pt: "diário da creator · pg. 01", en: "creator's diary · pg. 01" },
+  aboutTitle: { pt: "sobre mim", en: "about me" },
+  aboutPostit: { pt: "bilhete: \"Nano influencer e UGC creator. Conteúdo que funciona de verdade.\" ✨", en: "note: \"Nano influencer and UGC creator. Content that actually works.\" ✨" },
+  tag1: { pt: "#ugc creator", en: "#ugc creator" },
+  tag2: { pt: "#nano influencer", en: "#nano influencer" },
+  tag3: { pt: "#conteúdo que converte", en: "#content that converts" },
+  tag4: { pt: "#creator autêntica", en: "#authentic creator" },
+  statYears: { pt: "anos", en: "years old" },
+  statCity: { pt: "belo horizonte/mg", en: "belo horizonte, brazil" },
+  statDegree: { pt: "Direito", en: "Law" },
+  statDegreeYear: { pt: "formação, 2022", en: "degree, 2022" },
+  brandTickerLabel: { pt: "marcas que já confiaram no meu conteúdo", en: "brands that already trusted my content" },
+  videosKicker: { pt: "vídeos que já bombaram", en: "videos that already blew up" },
+  videosTitle: { pt: 'vídeos <span class="hl">icônicos</span>', en: '<span class="hl">iconic</span> videos' },
+  photosKicker: { pt: "still de produto e still em uso", en: "product stills and lifestyle shots" },
+  photosTitle: { pt: 'fotos <span class="hl">que já produzi</span>', en: 'photos <span class="hl">I\'ve shot</span>' },
+  servicesKicker: { pt: "o que eu entrego", en: "what I deliver" },
+  servicesTitle: { pt: 'serviços <span class="hl">que convertem</span>', en: 'services <span class="hl">that convert</span>' },
+  processoKicker: { pt: "como funciona", en: "how it works" },
+  processoTitle: { pt: 'o processo <span class="hl">ugc</span>', en: 'the <span class="hl">ugc</span> process' },
+  duvidasKicker: { pt: "tira dúvidas", en: "questions answered" },
+  duvidasTitle: { pt: 'principais <span class="hl">dúvidas</span>', en: 'frequently <span class="hl">asked</span>' },
+  contactKicker: { pt: "última página da revista", en: "the magazine's last page" },
+  contactTitle: { pt: 'bora criar <span class="hl">juntas?</span>', en: "let's create <span class=\"hl\">together?</span>" },
+  contactPs: { pt: "ps: sua marca merece conteúdo que para o scroll. bora bater um papo? 💌", en: "ps: your brand deserves content that stops the scroll. let's talk? 💌" },
+  formTitle: { pt: "fala comigo!", en: "talk to me!" },
+  formLabelName: { pt: "nome", en: "name" },
+  formLabelBrand: { pt: "empresa", en: "brand" },
+  formLabelEmail: { pt: "email", en: "email" },
+  formLabelWhats: { pt: "whatsapp", en: "whatsapp" },
+  formLabelBrief: { pt: "briefing", en: "briefing" },
+  formPlaceholderName: { pt: "seu nome", en: "your name" },
+  formPlaceholderBrand: { pt: "nome da marca", en: "brand name" },
+  formPlaceholderEmail: { pt: "voce@marca.com", en: "you@brand.com" },
+  formPlaceholderWhats: { pt: "(00) 00000-0000", en: "+1 (000) 000-0000" },
+  formPlaceholderBrief: { pt: "conta um pouco sobre o projeto...", en: "tell me a bit about the project..." },
+  formSubmit: { pt: "enviar e criar algo icônico", en: "send and create something iconic" },
+  formSuccess: { pt: "recebido! 💌 em breve eu te chamo.", en: "got it! 💌 talk to you soon." },
+  formNote: { pt: "seus dados vão direto pro painel da Rafa 💌", en: "your info goes straight to Rafa's dashboard 💌" },
+  navAbout: { pt: "sobre mim", en: "about" },
+  navVideos: { pt: "vídeos", en: "videos" },
+  navPhotos: { pt: "fotos", en: "photos" },
+  navServices: { pt: "serviços", en: "services" },
+  navProcesso: { pt: "processo", en: "process" },
+  navDuvidas: { pt: "dúvidas", en: "faq" },
+  navContact: { pt: "contato", en: "contact" },
+};
+
+// os 3 parágrafos do "sobre mim" (com <mark> e capitular) trocam de bloco inteiro
+const ABOUT_TEXT_HTML = {
+  pt: `<p><span class="cap">S</span>ou a Rafaela, criadora de conteúdo UGC de Belo Horizonte, e além de UGC também sou nano influencer, então sei como é estar dos dois lados da tela. Meu trabalho começa antes da câmera ligar: entender o produto, a marca e a pessoa que vai assistir ao vídeo do outro lado. <mark>Conteúdo que parece indicação de amiga</mark>, não propaganda, é essa a ideia.</p>
+    <p>Antes de criar conteúdo, me formei em Direito e trabalhei em banco, foi ali que ganhei o profissionalismo pra lidar com qualquer situação e qualquer público. Hoje, além de UGC e nano influência, também atuo como nail designer, e foi na prática que aprendi que um trabalho bom precisa ser bem retratado pra gerar desejo.</p>
+    <p>Foi assim que desenvolvi meu olhar pra luz, ângulo, enquadramento e edição, cuidando de cada detalhe até a imagem comunicar o valor real do que está ali. <mark>O que eu mais prezo é a confiança</mark>: quando sua marca aparecer ao meu lado, ela aparece de um jeito verdadeiro.</p>`,
+  en: `<p><span class="cap">I</span>'m Rafaela, a UGC content creator from Belo Horizonte, and besides UGC I'm also a nano influencer, so I know what it's like to be on both sides of the screen. My work starts before the camera turns on: understanding the product, the brand, and the person who'll watch the video on the other side. <mark>Content that feels like a friend's recommendation</mark>, not an ad, that's the idea.</p>
+    <p>Before creating content, I got a Law degree and worked at a bank, that's where I picked up the professionalism to handle any situation and any audience. Today, besides UGC and nano influencing, I also work as a nail designer, and it was in practice that I learned good work needs to be well portrayed to create desire.</p>
+    <p>That's how I developed my eye for light, angle, framing and editing, taking care of every detail until the image communicates the real value of what's there. <mark>What I value most is trust</mark>: when your brand appears next to mine, it shows up in a genuine way.</p>`,
+};
+
+function applyIdioma(lang){
+  idiomaAtual = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const t = TEXTOS[el.dataset.i18n];
+    if(t) el.innerHTML = t[lang];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const t = TEXTOS[el.dataset.i18nHtml];
+    if(t) el.innerHTML = t[lang];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const t = TEXTOS[el.dataset.i18nPlaceholder];
+    if(t) el.setAttribute('placeholder', t[lang]);
+  });
+  document.getElementById('aboutText').innerHTML = ABOUT_TEXT_HTML[lang];
+
+  renderTickerTrack();
+  renderVideosSection();
+  renderServices();
+  renderProcesso();
+  renderFaq();
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if(btn.dataset.lang !== idiomaAtual) applyIdioma(btn.dataset.lang);
+  });
+});
+
+applyIdioma('pt');
 
 /* ============================================================================
    INTERAÇÕES
    ============================================================================ */
 
-// ---- scroll reveal ----
-const revealEls = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('in');
-      io.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.15 });
-revealEls.forEach(el => io.observe(el));
+// (scroll reveal já foi observado nas funções de render acima, via observeReveals())
 
 // ---- rastreamento de cliques nos canais de contato (hero e seção de contato) ----
 // Mesma convenção do painel: cliques em whatsapp/instagram/email contam como
