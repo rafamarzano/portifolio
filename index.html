@@ -115,6 +115,10 @@ section{ position:relative; padding:100px 0 90px; }
   pointer-events:none;
 }
 .ph:hover::after{ transform:translateX(10%); }
+
+/* .ph-real: mesma moldura/glossy do placeholder, mas com foto de verdade dentro */
+.ph.ph-real{ padding:0; background:var(--black); }
+.ph.ph-real img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
 .ph span{ font-size:.8rem; opacity:.75; }
 
 /* doodle svg base */
@@ -733,8 +737,7 @@ section{ position:relative; padding:100px 0 90px; }
       <div class="hero-col-photo">
         <div class="scrap-row single">
           <figure class="polaroid cover-photo">
-            <!-- TROCAR POR IMAGEM REAL: substitua a div.ph por <img src="foto-capa.jpg" alt="Rafaela Marzano"> -->
-            <div class="ph">creator hero<br><span>4:5</span></div>
+            <div class="ph ph-real"><img src="imagens/hero.jpg" alt="Rafaela Marzano"></div>
             <figcaption>main character energy</figcaption>
           </figure>
         </div>
@@ -822,8 +825,7 @@ section{ position:relative; padding:100px 0 90px; }
         <div class="about-side">
           <div class="photo-stack">
             <figure class="polaroid">
-              <!-- TROCAR POR IMAGEM REAL -->
-              <div class="ph">retrato<br><span>3:4</span></div>
+              <div class="ph ph-real"><img src="imagens/sobre.jpg" alt="Rafaela Marzano"></div>
               <figcaption>hi, it's me</figcaption>
             </figure>
             <figure class="polaroid">
@@ -1114,14 +1116,14 @@ const CATEGORIES = [
 const VIDEOS = [
   { title: "Rímel – Essence", id: "g5e03lePN-s", cats: ["beleza"], progress: 60 },
   { title: "Protetor Solar em Bastão – Ollie", id: "ftPZUbps5l4", cats: ["beleza"], progress: 55 },
-  { title: "Skincare – Garnier", id: "4-u_Ixr91U0", cats: ["beleza"], progress: 70 },
+  { title: "Skincare – Garnier", id: "4-u_Ixr91U0", capa: "capa-skincare-garnier.jpg", cats: ["beleza"], progress: 70 },
   { title: "Maquiagem – Sheglam", id: "9oCH6CQwJ8w", cats: ["beleza"], progress: 65 },
-  { title: "Bodycare – Dove", id: "Wc8cZthCIqY", cats: ["beleza"], progress: 58 },
-  { title: "Skincare ASMR – Garnier", id: "kfmjTGT1gL0", cats: ["beleza"], progress: 74 },
-  { title: "Haircare – Pantene", id: "OqADOIezdro", cats: ["beleza", "ads"], progress: 82 },
-  { title: "Haircare – Elseve", id: "MhpClbp7ydE", cats: ["beleza", "ads"], progress: 78 },
-  { title: "Unboxing de roupas – Temu", id: "h8v-Lkg7GYw", cats: ["moda"], progress: 66 },
-  { title: "Uma peça, sete looks – Shein", id: "msCW92ZLvnU", cats: ["moda"], progress: 90 },
+  { title: "Bodycare – Dove", id: "Wc8cZthCIqY", capa: "capa-bodycare-dove.jpg", cats: ["beleza"], progress: 58 },
+  { title: "Skincare ASMR – Garnier", id: "kfmjTGT1gL0", capa: "capa-skincare-garnier-asmr.jpg", cats: ["beleza"], progress: 74 },
+  { title: "Haircare – Pantene", id: "OqADOIezdro", capa: "capa-haircare-pantene.jpg", cats: ["beleza", "ads"], progress: 82 },
+  { title: "Haircare – Elseve", id: "MhpClbp7ydE", capa: "capa-haircare-elseve.jpg", cats: ["beleza", "ads"], progress: 78 },
+  { title: "Unboxing de roupas – Temu", id: "h8v-Lkg7GYw", capa: "capa-unboxing-temu.jpg", cats: ["moda"], progress: 66 },
+  { title: "Uma peça, sete looks – Shein", id: "msCW92ZLvnU", capa: "capa-shein-sete-looks.jpg", cats: ["moda"], progress: 90 },
   { title: "Fit check academia – Dazy", id: "3g3cJjOntMw", cats: ["moda"], progress: 52 },
   { title: "Acessório Dia dos Pais – Gemany", id: "D1PXnbh-mig", cats: ["moda"], progress: 48 },
   { title: "Trend de acessórios", id: "hp0bmPDBuFg", cats: ["moda"], progress: 61 },
@@ -1140,20 +1142,21 @@ const VIDEOS = [
   { title: "Barrinha Proteica – BOLD", id: "gODmi9ct7a0", cats: ["wellness-fit"], progress: 67 },
 ];
 
-// FOTOS — galeria simples migrada do portfólio real (still de produto e still em uso).
+// FOTOS — galeria com as fotos reais em imagens/portfolio-fotos/ (já existentes no repositório).
+// "pos" é object-position, pra enquadrar melhor o recorte quadrado do card.
 const PHOTOS = [
-  { caption: "Editorial de look completo" },
-  { caption: "Still de produto — máscara de cílios, Essence" },
-  { caption: "Still de acessórios — brincos e anéis" },
-  { caption: "Still de produto — maquiagem" },
-  { caption: "Still de produto — protetor solar" },
-  { caption: "Still de produto — boné" },
-  { caption: "Still de produto com rosto — máscara de cílios, Essence" },
-  { caption: "Still de acessórios" },
-  { caption: "Still de produto — blush, Sheglam" },
-  { caption: "Still de produto — barra de proteína, Bold" },
-  { caption: "Still de acessórios — brincos" },
-  { caption: "Aplicação de máscara de cílios — Essence" },
+  { caption: "Editorial de look completo", img: "editorial-look.jpg", pos: "center 10%" },
+  { caption: "Still de produto — máscara de cílios, Essence", img: "essence-still.jpg", pos: "center 52%" },
+  { caption: "Still de acessórios — brincos e anéis", img: "acessorios.jpg", pos: "center 20%" },
+  { caption: "Still de produto — maquiagem", img: "still-maquiagem.jpg", pos: "center" },
+  { caption: "Still de produto — protetor solar", img: "protetor-solar.jpg", pos: "center" },
+  { caption: "Still de produto — boné", img: "bone.jpg", pos: "center 20%" },
+  { caption: "Still de produto com rosto — máscara de cílios, Essence", img: "essence-rosto.jpg", pos: "center 50%" },
+  { caption: "Still de acessórios", img: "still-acessorios.jpg", pos: "center 30%" },
+  { caption: "Still de produto — blush, Sheglam", img: "sheglam-blush.png", pos: "center 15%" },
+  { caption: "Still de produto — barra de proteína, Bold", img: "bold.jpg", pos: "center 85%" },
+  { caption: "Still de acessórios — brincos", img: "acessorios-copa.jpg", pos: "center 20%" },
+  { caption: "Aplicação de máscara de cílios — Essence", img: "essence-aplicacao.jpg", pos: "center 60%" },
 ];
 
 // SERVIÇOS — pacotes reais oferecidos hoje (rafamarzano.online).
@@ -1214,11 +1217,15 @@ function renderVideos(filter){
   videoGrid.innerHTML = list.map(v => {
     const catLabels = v.cats.map(k => (CATEGORIES.find(c => c.key === k) || {}).label || k);
     const url = `https://youtube.com/shorts/${v.id}`;
+    // usa a capa local (imagens/portfolio-videos/) quando existir; senão, cai pra thumbnail do youtube
+    const coverImg = v.capa
+      ? `<img class="cover-img" src="imagens/portfolio-videos/${v.capa}" alt="${v.title}" loading="lazy">`
+      : `<img class="cover-img" src="https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${v.id}/hqdefault.jpg';" alt="${v.title}" loading="lazy">`;
     return `
     <a class="vcard reveal in" href="${url}" target="_blank" rel="noopener noreferrer" data-video-id="${v.id}" data-video-title="${v.title}">
       <div class="cover">
         <span class="cat-tag">${catLabels.join(' · ')}</span>
-        <img class="cover-img" src="https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${v.id}/hqdefault.jpg';" alt="${v.title}" loading="lazy">
+        ${coverImg}
         <div class="play"><span>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--black)"><path d="M8 5v14l11-7z"/></svg>
         </span></div>
@@ -1252,8 +1259,7 @@ videoGrid.addEventListener('click', (e) => {
 const photoGrid = document.getElementById('photoGrid');
 photoGrid.innerHTML = PHOTOS.map(p => `
   <figure class="pcard reveal in">
-    <!-- TROCAR POR IMAGEM REAL: substitua a div.ph por <img src="sua-foto.jpg" alt="..."> -->
-    <div class="ph">${p.caption}<br><span>still 1:1</span></div>
+    <div class="ph ph-real"><img src="imagens/portfolio-fotos/${p.img}" alt="${p.caption}" style="object-position:${p.pos || 'center'}" loading="lazy"></div>
     <figcaption>${p.caption}</figcaption>
   </figure>
 `).join('');
