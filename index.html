@@ -367,9 +367,9 @@ section{ position:relative; padding:100px 0 90px; }
 .photo-stack .polaroid:nth-child(1){ transform:rotate(-9deg) translate(-20px,-6px); z-index:1; }
 .photo-stack .polaroid:nth-child(2){ transform:rotate(6deg) translate(16px,8px); z-index:2; }
 .photo-stack .polaroid:nth-child(3){ transform:rotate(-2deg) translate(-2px,22px); z-index:3; }
-.photo-stack:hover .polaroid:nth-child(1){ transform:rotate(-19deg) translate(-74px,-46px); }
-.photo-stack:hover .polaroid:nth-child(2){ transform:rotate(13deg) translate(68px,-30px); }
-.photo-stack:hover .polaroid:nth-child(3){ transform:rotate(-1deg) translate(0,20px); }
+.photo-stack:hover .polaroid:nth-child(1){ transform:rotate(-26deg) translate(-122px,-78px); }
+.photo-stack:hover .polaroid:nth-child(2){ transform:rotate(20deg) translate(116px,-60px); }
+.photo-stack:hover .polaroid:nth-child(3){ transform:rotate(-1deg) translate(0,10px); }
 @media (max-width:640px){
   .photo-stack{ width:180px; height:270px; }
   .photo-stack .polaroid{ width:180px; }
@@ -422,7 +422,20 @@ section{ position:relative; padding:100px 0 90px; }
    ========================================================================== */
 .videos{ background:var(--pink-pale); border-bottom:3px dashed var(--black); }
 
+/* menuzinho de categorias: pílulas que rolam a página até a linha da categoria */
+.cat-nav-pills{
+  display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:48px;
+}
+.cat-nav-pill{
+  border:2.5px solid var(--black); background:var(--white); color:var(--black);
+  font-family:var(--f-label); letter-spacing:.05em; font-size:.85rem;
+  padding:9px 18px; border-radius:999px; box-shadow:var(--shadow-hard-sm);
+  transition:transform .2s ease, background .2s ease, color .2s ease;
+}
+.cat-nav-pill:hover{ transform:translateY(-3px) rotate(-2deg); background:var(--pink-hot); color:var(--white); }
+
 .video-rows{ display:flex; flex-direction:column; gap:52px; }
+.cat-row{ scroll-margin-top:60px; }
 .cat-row-head{
   display:flex; justify-content:space-between; align-items:flex-end; gap:20px;
   margin-bottom:18px; flex-wrap:wrap;
@@ -914,6 +927,7 @@ section{ position:relative; padding:100px 0 90px; }
       <div class="sec-underline"></div>
     </div>
 
+    <div class="cat-nav-pills" id="catNavPills"></div>
     <div class="video-rows" id="videoRows"></div>
   </div>
 </section>
@@ -1267,11 +1281,23 @@ function videoCardHtml(v){
     </div>`;
 }
 
-videoRowsEl.innerHTML = CATEGORIES.map(cat => {
+const catsComVideo = CATEGORIES.filter(cat => VIDEOS.some(v => v.cats.includes(cat.key)));
+
+// menuzinho de pílulas: rola suavemente até a linha da categoria clicada
+document.getElementById('catNavPills').innerHTML = catsComVideo.map(cat =>
+  `<button class="cat-nav-pill" data-goto="cat-row-${cat.key}">${cat.label}</button>`
+).join('');
+document.getElementById('catNavPills').addEventListener('click', (e) => {
+  const btn = e.target.closest('.cat-nav-pill');
+  if(!btn) return;
+  const el = document.getElementById(btn.dataset.goto);
+  if(el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+videoRowsEl.innerHTML = catsComVideo.map(cat => {
   const vids = VIDEOS.filter(v => v.cats.includes(cat.key));
-  if(!vids.length) return '';
   return `
-  <div class="cat-row">
+  <div class="cat-row" id="cat-row-${cat.key}">
     <div class="cat-row-head">
       <div>
         <h3 class="cat-row-title">${cat.label} <span class="cat-row-count">${vids.length}</span></h3>
